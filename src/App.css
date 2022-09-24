@@ -1,3 +1,36 @@
 .App {
   text-align: center;
 }
+
+.profile-img {
+  border-radius: 70%;
+  height: 200px;
+  float: left;
+  margin-left: 100px;
+  margin-right: 10px;
+  /* width: 200px; */
+}
+
+.profile-title {
+  /* float: left; */
+  text-align: left;
+  margin-bottom: 0px;
+}
+
+.profile-univ {
+  text-align: left;
+  margin-top: 0px;
+}
+
+.profile-intro {
+  float: left;
+  
+}
+
+.profile-btn {
+  /* float: left; */
+}
+
+.profile-list {
+  clear: both;
+}
