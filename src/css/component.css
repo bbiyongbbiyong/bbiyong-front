@@ -1,0 +1,7 @@
+.messages {
+        display: table-cell;
+        padding-left: 10px;
+        text-align: left;
+        vertical-align: middle;
+
+}
