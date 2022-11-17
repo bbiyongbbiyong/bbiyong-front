@@ -1,0 +1,12 @@
+svg {
+    /* border: 1px solid red; */
+}
+
+path {
+    stroke: black;
+    cursor: pointer;
+}
+
+path:hover {
+    fill: blue;
+}
