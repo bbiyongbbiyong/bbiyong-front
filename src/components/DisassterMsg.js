@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import "../css/message.css"
 
 
 function DisassterMsg(){
@@ -32,9 +33,9 @@ function DisassterMsg(){
       return(
         <div>
             <h3>재난 문자</h3>
-            <div className="get_metro">
+            <div style={{overflow:'scroll'}} className="msgBox">
                 {Msges.map(msg=>
-                <ul key={msg.id}>
+                <ul className="dissMsg" key={msg.id}>
                     [{msg.username}]
                 </ul>)}
             </div>

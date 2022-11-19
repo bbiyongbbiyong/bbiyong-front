@@ -1,8 +1,5 @@
 import "./css/App.css";
-import MetroInfo from "./components/MetroInfo";
-import DisassterMSG from "./components/DisassterMsg";
-import TrafficInfo from "./components/TrafficInfo";
-import "./components/CheckBox";
+import Main from "./components/Main"
 import "./css/App.css"
 
 function App() {
@@ -12,35 +9,10 @@ function App() {
         <div>
         <h2>지금 서울은?</h2>
 
-        <input type='checkbox'
-        value='all'
-        name='check'
-        //onClick='getCheckboxAll(event)'
-        /> 전체
-
-      <input type='checkbox'
-        value='metro_info'
-        name='check'
-        // onClick='getCheckboxValue(event)'
-        /> 지하철정보
-
-        <input type='checkbox' 
-          value='traffic_info' 
-          name='check'
-         // onClick='getCheckboxValue(event)'
-         /> 도로통제정보
-
-        <input type='checkbox' 
-          value='disasster_msg' 
-          name='check'
-          //onClick='getCheckboxValue(event)'
-          /> 재난문자
 
     <div id='result'></div>
       <div className="mainContainer">
-        <MetroInfo />
-        <DisassterMSG />
-        <TrafficInfo />
+        <Main />
       </div>
         </div>
     </div>
