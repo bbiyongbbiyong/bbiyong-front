@@ -13,18 +13,25 @@ function SeoulMap() {
 
   const cityRef = useRef();
   const nameRef = useRef();
+  let seoulClicked = false;
 
   const clickCity = (e) => {
     let text = "";
-    if (cityRef.current === e.target) text = "서울은?";
+    cityRef.current.classList.remove('selected')
+    
+    if (cityRef.current === e.target && seoulClicked === false) {
+      seoulClicked = true;
+      text = "서울은?";
+    }
     else {
+      seoulClicked = false;
       cityRef.current = e.target;
       text = cityRef.current.id + "는?";
+      cityRef.current.classList.add('selected') 
     }
-
     nameRef.current.innerHTML = `지금 ${text}`;
   };
-
+  
   const fillCity = (target) => {
     const a = "rgba(255, 0, 0, ";
     const b = `${0.05 * target.length})`;
