@@ -56,7 +56,7 @@ function SeoulMap() {
                 onClick={(e) => clickCity(e, ind)}
                 fill={fillCity(city)}
               />
-              <text transform={nameCity(ind)} textAnchor="middle" dy className="name">
+              <text transform={nameCity(ind)} textAnchor="middle" className="name">
                 {city.properties.SIG_KOR_NM}
               </text>
             </>
@@ -71,7 +71,7 @@ function SeoulMap() {
                 fill={fillCity(cities[clickCityNum])} 
                 className="selected" 
               /> 
-              <text transform={nameCity(clickCityNum)} textAnchor="middle" dy className="name">
+              <text transform={nameCity(clickCityNum)} textAnchor="middle" className="name">
                 {cities[clickCityNum].properties.SIG_KOR_NM}
               </text>
             </>
