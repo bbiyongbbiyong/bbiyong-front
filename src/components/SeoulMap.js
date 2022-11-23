@@ -1,4 +1,3 @@
-/* eslint-disable */
 import "../css/SeoulMap.css";
 import { useRef, useState } from "react";
 import centerCoord from "./mapCoord";
@@ -13,38 +12,30 @@ function SeoulMap() {
     };
   });
 
-  let [ clickSeoul, setClickSeoul ] = useState(true);
-  let [ clickCityNum, setClickCityNum ] = useState(null);
+  const[clickSeoul, setClickSeoul] = useState(true);
+  const[clickCityNum, setClickCityNum] = useState(null);
 
   const cityRef = useRef();
   const nameRef = useRef();
-  let seoulClicked = false;
 
-  const clickCity = (e) => {
-    // cityRef.current.classList.remove('selected')
+  const clickCity = (e, ind) => {
     let text = "";
-    if (cityRef.current.id === e.target.id && clickSeoul === false) {
+    if (cityRef.current.id === e.target.id && !clickSeoul) {
       setClickSeoul(true);
       setClickCityNum(null);
       text = "서울은?";
     }
     else {
-      seoulClicked = false;
-      cityRef.current = e.target;
       setClickSeoul(false);
-      cities.map((city, ind) => {
-        if(cityRef.current.id === city.properties.SIG_KOR_NM)
-          setClickCityNum(ind);
-      })
+      setClickCityNum(ind);
+      cityRef.current = e.target;
       text = cityRef.current.id + "는?";
-      // cityRef.current.classList.add('selected') ;
     }
     nameRef.current.innerHTML = `지금 ${text}`;
   };
+
   const fillCity = (target) => {
-    const a = "rgba(255, 0, 0, ";
-    const b = `${0.05 * target.length})`;
-    return a + b;
+    return `rgba(255, 0, 0, ${0.05 * target.length})`;
   };
 
   const nameCity = (ind) => {
@@ -62,7 +53,7 @@ function SeoulMap() {
                 key={ind}
                 id={city.properties.SIG_KOR_NM}
                 d={city.properties.coord}    
-                onClick={clickCity}
+                onClick={(e) => clickCity(e, ind)}
                 fill={fillCity(city)}
               />
               <text transform={nameCity(ind)} textAnchor="middle" dy className="name">
@@ -71,19 +62,18 @@ function SeoulMap() {
             </>
           ))}
           {
-            clickCityNum === null ? 
-            <></> : 
+            clickCityNum !== null &&
             <>
-            <path 
-              id={cities[clickCityNum].properties.SIG_KOR_NM} 
-              d={cities[clickCityNum].properties.coord} 
-              onClick={clickCity} 
-              fill={fillCity(cities[clickCityNum])} 
-              className="selected" 
-            /> 
-            <text transform={"translate(" + centerCoord[clickCityNum][0] + ", " + centerCoord[clickCityNum][1] + ")"} textAnchor="middle" className="name">
-              {cities[clickCityNum].properties.SIG_KOR_NM}
-            </text>
+              <path 
+                id={cities[clickCityNum].properties.SIG_KOR_NM} 
+                d={cities[clickCityNum].properties.coord} 
+                onClick={clickCity} 
+                fill={fillCity(cities[clickCityNum])} 
+                className="selected" 
+              /> 
+              <text transform={nameCity(clickCityNum)} textAnchor="middle" dy className="name">
+                {cities[clickCityNum].properties.SIG_KOR_NM}
+              </text>
             </>
           }
         </g>
