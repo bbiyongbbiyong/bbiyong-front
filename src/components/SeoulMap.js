@@ -1,5 +1,6 @@
 import "../css/SeoulMap.css";
 import { useRef } from "react";
+import centerCoord from "./mapCoord";
 
 function SeoulMap() {
   const mapData = require("./mapData.json").data;
@@ -38,6 +39,10 @@ function SeoulMap() {
     return a + b;
   };
 
+  const nameCity = (ind) => {
+    return "translate(" + centerCoord[ind][0] + ", " + centerCoord[ind][1] + ")";
+  }
+
   return (
     <>
       <svg width="300" height="300" viewBox="0 0 800 500">
@@ -51,9 +56,9 @@ function SeoulMap() {
                 onClick={clickCity}
                 fill={fillCity(city)}
               />
-              {/* <text x={ind} y={ind * 20 + 50}>
-                {city.name}
-              </text> */}
+              <text transform={nameCity(ind)} textAnchor="middle" dy className="name">
+                {city.properties.SIG_KOR_NM}
+              </text>
             </>
           ))}
         </g>

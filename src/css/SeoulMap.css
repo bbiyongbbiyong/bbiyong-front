@@ -16,3 +16,8 @@ path:hover {
     stroke-width: 4px;
     cursor: pointer;
 }
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+}
