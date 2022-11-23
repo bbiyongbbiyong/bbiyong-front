@@ -1,7 +1,7 @@
 /* eslint-disable */
 import "../css/SeoulMap.css";
 import { useRef, useState } from "react";
-import centerCoord from "./centerCoord.js";
+import centerCoord from "./mapCoord";
 
 function SeoulMap() {
   const mapData = require("./mapData.json").data;
@@ -18,6 +18,7 @@ function SeoulMap() {
 
   const cityRef = useRef();
   const nameRef = useRef();
+  let seoulClicked = false;
 
   const clickCity = (e) => {
     // cityRef.current.classList.remove('selected')
@@ -28,6 +29,7 @@ function SeoulMap() {
       text = "서울은?";
     }
     else {
+      seoulClicked = false;
       cityRef.current = e.target;
       setClickSeoul(false);
       cities.map((city, ind) => {
@@ -44,7 +46,11 @@ function SeoulMap() {
     const b = `${0.05 * target.length})`;
     return a + b;
   };
-  
+
+  const nameCity = (ind) => {
+    return "translate(" + centerCoord[ind][0] + ", " + centerCoord[ind][1] + ")";
+  }
+
   return (
     <>
       <svg width="300" height="300" viewBox="0 0 800 500">
@@ -59,8 +65,8 @@ function SeoulMap() {
                 onClick={clickCity}
                 fill={fillCity(city)}
               />
-              <text transform={"translate(" + centerCoord[ind][0] + ", " + centerCoord[ind][1] + ")"} textAnchor="middle" className="name">
-              {city.properties.SIG_KOR_NM}
+              <text transform={nameCity(ind)} textAnchor="middle" dy className="name">
+                {city.properties.SIG_KOR_NM}
               </text>
             </>
           ))}

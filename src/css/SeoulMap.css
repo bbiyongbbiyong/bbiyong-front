@@ -3,7 +3,6 @@ svg {
 
 }
 
-
 path {
     stroke: black;
     cursor: pointer;
@@ -16,12 +15,12 @@ path:hover {
 
 .selected {
     stroke: black;
-    stroke-width: 8px;
+    stroke-width: 4px;
     cursor: pointer;
 }
 
 .name {
-    font-size: 19px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
 }
