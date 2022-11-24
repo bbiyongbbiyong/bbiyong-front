@@ -1,9 +1,11 @@
 .App {
   text-align: center;
 }
-.mainContainer{
-  background: rgb(255, 235, 214);
-  height: 800px; width: 200px;
-  border-radius: 15px;
 
+.mainContainer{
+  margin-left: auto; margin-right: auto;
+
+  background: rgb(255, 235, 214);
+  height: 3000px; width: 500px;
+  border-radius: 15px;
 }
