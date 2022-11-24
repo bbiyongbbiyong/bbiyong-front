@@ -1,0 +1,26 @@
+svg {
+    /* border: 1px solid red; */
+
+}
+
+path {
+    stroke: black;
+    cursor: pointer;
+}
+
+path:hover {
+    fill: blue;
+    opacity: 0.5;
+}
+
+.selected {
+    stroke: black;
+    stroke-width: 4px;
+    cursor: pointer;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
