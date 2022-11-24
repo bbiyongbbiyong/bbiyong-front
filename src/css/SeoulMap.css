@@ -1,5 +1,6 @@
 svg {
     /* border: 1px solid red; */
+
 }
 
 path {
@@ -9,6 +10,7 @@ path {
 
 path:hover {
     fill: blue;
+    opacity: 0.5;
 }
 
 .selected {

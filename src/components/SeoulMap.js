@@ -1,5 +1,5 @@
 import "../css/SeoulMap.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import centerCoord from "./mapCoord";
 
 function SeoulMap() {
@@ -12,31 +12,30 @@ function SeoulMap() {
     };
   });
 
+  const[clickSeoul, setClickSeoul] = useState(true);
+  const[clickCityNum, setClickCityNum] = useState(null);
+
   const cityRef = useRef();
   const nameRef = useRef();
-  let seoulClicked = false;
 
-  const clickCity = (e) => {
+  const clickCity = (e, ind) => {
     let text = "";
-    cityRef.current.classList.remove('selected')
-    
-    if (cityRef.current === e.target && seoulClicked === false) {
-      seoulClicked = true;
+    if (cityRef.current.id === e.target.id && !clickSeoul) {
+      setClickSeoul(true);
+      setClickCityNum(null);
       text = "서울은?";
     }
     else {
-      seoulClicked = false;
+      setClickSeoul(false);
+      setClickCityNum(ind);
       cityRef.current = e.target;
       text = cityRef.current.id + "는?";
-      cityRef.current.classList.add('selected') 
     }
     nameRef.current.innerHTML = `지금 ${text}`;
   };
-  
+
   const fillCity = (target) => {
-    const a = "rgba(255, 0, 0, ";
-    const b = `${0.05 * target.length})`;
-    return a + b;
+    return `rgba(255, 0, 0, ${0.05 * target.length})`;
   };
 
   const nameCity = (ind) => {
@@ -48,19 +47,35 @@ function SeoulMap() {
       <svg width="300" height="300" viewBox="0 0 800 500">
         <g ref={cityRef}>
           {cities.map((city, ind) => (
+            clickCityNum === ind && clickCityNum !== null ? null : 
             <>
               <path
                 key={ind}
                 id={city.properties.SIG_KOR_NM}
-                d={city.properties.coord}
-                onClick={clickCity}
+                d={city.properties.coord}    
+                onClick={(e) => clickCity(e, ind)}
                 fill={fillCity(city)}
               />
-              <text transform={nameCity(ind)} textAnchor="middle" dy className="name">
+              <text transform={nameCity(ind)} textAnchor="middle" className="name">
                 {city.properties.SIG_KOR_NM}
               </text>
             </>
           ))}
+          {
+            clickCityNum !== null &&
+            <>
+              <path 
+                id={cities[clickCityNum].properties.SIG_KOR_NM} 
+                d={cities[clickCityNum].properties.coord} 
+                onClick={clickCity} 
+                fill={fillCity(cities[clickCityNum])} 
+                className="selected" 
+              /> 
+              <text transform={nameCity(clickCityNum)} textAnchor="middle" className="name">
+                {cities[clickCityNum].properties.SIG_KOR_NM}
+              </text>
+            </>
+          }
         </g>
       </svg>
       <div ref={nameRef}> 지금 서울은? </div>
