@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import "../css/message.css"
 
-function DisassterMsg(){
+function DisassterMsg(isTrue){
     const [Msges,setMsges]=useState(null);
     const [Loading,setLoading]=useState(false);
     const [Error, setError] = useState(null);
+
 
     const getTraffic = async()=>{
         try{
@@ -30,10 +31,10 @@ function DisassterMsg(){
 
 
       return(
-
+        
         <div>
             <h3>도로 통제 정보</h3>
-            <div style={{overflow:'scroll'}} className="msgBox">
+            <div className="msgBox">
                 {Msges.map(msg=>
                 <ul className="" key={msg.id}>
                     [{msg.username}] 

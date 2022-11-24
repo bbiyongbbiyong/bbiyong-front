@@ -7,13 +7,9 @@ function App() {
     <div>
       <div className="App">삐용삐용</div>
         <div>
-        <h2>지금 서울은?</h2>
-
-
-    <div id='result'></div>
-      <div className="mainContainer">
-        <Main />
-      </div>
+          <div className="mainContainer">
+           <Main />
+          </div>
         </div>
     </div>
   );

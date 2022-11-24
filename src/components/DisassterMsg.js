@@ -33,7 +33,7 @@ function DisassterMsg(){
       return(
         <div>
             <h3>재난 문자</h3>
-            <div style={{overflow:'scroll'}} className="msgBox">
+            <div  className="msgBox">
                 {Msges.map(msg=>
                 <ul className="dissMsg" key={msg.id}>
                     [{msg.username}]

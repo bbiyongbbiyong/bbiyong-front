@@ -32,7 +32,7 @@ function MetroInfo(){
       return(
         <div>
             <h3>지하철 지연정보</h3>
-            <div style={{overflow:'scroll'}} className="msgBox">
+            <div className="msgBox">
                 {Msges.map(msg=>
                 <ul key={msg.id}>
                     [{msg.username}]
