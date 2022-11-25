@@ -1,4 +1,4 @@
-import Main from "./components/Main"
+import CheckBox from "./components/CheckBox"
 import SeoulMap from "./components/SeoulMap";
 import "./css/App.css"
 
@@ -9,7 +9,7 @@ function App() {
         <SeoulMap/>
         <div>
           <div className="mainContainer">
-           <Main />
+           <CheckBox />
           </div>
         </div>
     </div>

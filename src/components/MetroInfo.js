@@ -3,8 +3,8 @@ import axios from 'axios';
 
 
 function MetroInfo(){
-    const [Msges,setMsges]=useState(null);
-    const [Loading,setLoading]=useState(false);
+    const [Msges,setMsges] = useState(null);
+    const [Loading,setLoading] = useState(false);
     const [Error, setError] = useState(null);
 
     const getMetro = async()=>{
@@ -24,22 +24,28 @@ function MetroInfo(){
         getMetro();
       },[]);
 
-      if (Loading) return <div>Loading...</div>;
-      if (Error) return <div>Error(Metro Info)</div>;
-      if (!Msges) return null;  
+    if(Loading)
+      return <div>Loading...</div>;
+      
+    if(Error)
+     return <div>Error(Metro Info)</div>;
+
+    if(!Msges)
+     return null;  
 
 
-      return(
-        <div>
-            <h3>지하철 지연정보</h3>
-            <div className="msgBox">
-                {Msges.map(msg=>
+    return(
+      <div>
+        <h3>지하철 지연정보</h3>
+        <div className="msgBox">
+            {Msges.map(msg=>
                 <ul key={msg.id}>
-                    [{msg.username}]
-                </ul>)}
+                  [{msg.username}]
+                </ul>)
+            }
             </div>
-            <button onClick={getMetro}>지도 클릭하면 다시</button>
-        </div>
+          <button onClick={getMetro}>지도 클릭하면 다시</button>
+      </div>
     )
 }
 

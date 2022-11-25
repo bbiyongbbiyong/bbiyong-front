@@ -25,23 +25,28 @@ function DisassterMsg(isTrue){
         getTraffic();
       },[]);
 
-      if (Loading) return <div>Loading...</div>;
-      if (Error) return <div>Error(Traffic Info)</div>;
-      if (!Msges) return null;  
+    if(Loading)
+        return <div>Loading...</div>;
+    
+    if(Error)
+        return <div>Error(Traffic Info)</div>;
+    
+    if(!Msges)
+        return null;  
 
 
-      return(
-        
-        <div>
-            <h3>도로 통제 정보</h3>
-            <div className="msgBox">
-                {Msges.map(msg=>
+    return(
+      <div>
+          <h3>도로 통제 정보</h3>
+          <div className="msgBox">
+              {Msges.map(msg=>
                 <ul className="" key={msg.id}>
-                    [{msg.username}] 
-                </ul>)}
-            </div>
-            <button onClick={getTraffic}>지도 클릭하면 다시</button>
-        </div>
+                  [{msg.username}] 
+                </ul>)
+                }
+          </div>
+          <button onClick={getTraffic}>지도 클릭하면 다시</button>
+      </div>
     )
 }
 
