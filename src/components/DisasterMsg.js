@@ -3,9 +3,9 @@ import axios from 'axios';
 import "../css/message.css"
 
 
-function DisassterMsg(){
-    const [Msges,setMsges]=useState(null);
-    const [Loading,setLoading]=useState(false);
+function DisasterMsg(){
+    const [Msges,setMsges] = useState(null);
+    const [Loading,setLoading] = useState(false);
     const [Error, setError] = useState(null);
 
     const getDisasster = async()=>{
@@ -21,13 +21,18 @@ function DisassterMsg(){
         setLoading(false);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         getDisasster();
       },[]);
 
-      if (Loading) return <div>Loading...</div>;
-      if (Error) return <div>Error(Disasster Message)</div>;
-      if (!Msges) return null;  
+      if(Loading)
+        return <div>Loading...</div>;
+        
+      if(Error)
+        return <div>Error(Disaster Message)</div>;
+
+      if(!Msges)
+        return null;  
 
 
       return(
@@ -35,9 +40,10 @@ function DisassterMsg(){
             <h3>재난 문자</h3>
             <div  className="msgBox">
                 {Msges.map(msg=>
-                <ul className="dissMsg" key={msg.id}>
-                    [{msg.username}]
-                </ul>)}
+                    <ul className="disMsg" key={msg.id}>
+                        [{msg.username}]
+                    </ul>)
+                }
             </div>
             <button onClick={getDisasster}>지도 클릭하면 다시</button>
         </div>
@@ -45,4 +51,4 @@ function DisassterMsg(){
 }
 
 
-export default DisassterMsg;
+export default DisasterMsg;

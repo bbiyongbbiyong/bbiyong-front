@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import "../css/message.css";
 import MetroInfo from "./MetroInfo";
-import DisassterMSG from "./DisassterMsg";
+import DisasterMSG from "./DisasterMsg";
 import TrafficInfo from "./TrafficInfo";
 
 export default function CheckBox() {
@@ -34,30 +34,37 @@ export default function CheckBox() {
 
   return (
     <div>
-            <input type='checkbox'  name='select-all'
-              onChange={(e) => handleAllCheck(e.target.checked)}
-              checked={checkItems.length === data.length ? true : false} />전체
-        {data?.map((data, key) => (
-          <span key={key}>
-              <input type='checkbox' name={`select-${data.id}`}
-                onChange={(e) => handleSingleCheck(e.target.checked, data.id)}
-                checked={checkItems.includes(data.id) ? true : false} />{data.title}
-          </span>
+      <input
+        type='checkbox'
+        name='select-all'
+        onChange={(e) => handleAllCheck(e.target.checked)}
+        checked={checkItems.length === data.length ? true : false} 
+      />전체
+
+      {data?.map((data, key) => (
+        <span key={key}>
+          <input
+            type='checkbox'
+            name={`select-${data.id}`}
+            onChange={(e) => handleSingleCheck(e.target.checked, data.id)}
+            checked={checkItems.includes(data.id) ? true : false} 
+            />{data.title}
+        </span>
         ))}
-        <div  className="mainContainer">
+
+        <div className="mainContainer">
           {checkItems.map((check)=>{
             if(check===0)
-              return <DisassterMSG/>;           
+              return <DisasterMSG/>;           
             else if(check===1)       
-              return <MetroInfo />;              
+              return <MetroInfo/>;              
             else if(check===2)
-              return <TrafficInfo />;
+              return <TrafficInfo/>;
             else
               return null;
-              }
-            )
+            })
           }
-          </div>
+        </div>
     </div>
     
   )
