@@ -84,7 +84,7 @@ function SeoulMap() {
       </svg>
       </div>
     
-      <div ref={nameRef}> 지금 서울은? </div>
+      <h2 ref={nameRef}> 지금 서울은? </h2>
     </>
   );
 }
