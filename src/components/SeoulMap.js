@@ -50,6 +50,7 @@ function SeoulMap() {
 
   return (
     <>
+      <div id="map-container">
       <svg width="300" height="300" viewBox="0 0 800 500">
         {cities.map((city, ind) => (
           <g key={ind} ref={cityRef}>
@@ -81,7 +82,8 @@ function SeoulMap() {
           </>
         }
       </svg>
-      
+      </div>
+    
       <div ref={nameRef}> 지금 서울은? </div>
     </>
   );

@@ -1,6 +1,6 @@
-svg {
-    /* border: 1px solid red; */
-
+#map-container {
+    display: flex;
+    justify-content: center;
 }
 
 path {
