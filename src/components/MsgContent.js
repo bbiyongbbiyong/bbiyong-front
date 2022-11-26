@@ -47,8 +47,8 @@ function MsgContent({check}) {
 		<h3>{title[check]}</h3>
 		<div className="msgBox">
 			{
-				Msges.map(msg => 
-					<ul className={"disMsg disMsg"+check}>
+				Msges.map((msg, i) => 
+					<ul key={i} className={"disMsg disMsg"+check}>
 						[{clickCity.cityName}]<br/>
 						{msg.username}입니다. 유의하세요! 
 						{/* 받아온 데이터 */}
