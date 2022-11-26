@@ -51,7 +51,7 @@ function SeoulMap() {
   return (
     <>
       <div id="map-container">
-      <svg width="300" height="300" viewBox="0 0 800 500">
+      <svg width="300" height="250" viewBox="0 0 800 600">
         {cities.map((city, ind) => (
           <g key={ind} ref={cityRef}>
             <path
