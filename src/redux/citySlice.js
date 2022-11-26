@@ -2,7 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 let clickCity = createSlice({
 	name: 'clickCity',
-	initialState: {id: null, cityName: ""},
+	initialState: {id: null, cityName: "서울"},
 	reducers: {
 		changeClickCity(state, action) {
 			state.id = action.payload[0];

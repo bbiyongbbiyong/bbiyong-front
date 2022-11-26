@@ -4,7 +4,7 @@ import "../css/message.css";
 
 function MsgBox(props) {
   let check = props.checkItems;
-
+  check.sort();
   return (
     <div>
       {
