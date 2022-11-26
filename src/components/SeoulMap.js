@@ -1,8 +1,12 @@
 import "../css/SeoulMap.css";
 import { useRef, useState } from "react";
 import centerCoord from "./mapCoord";
+import { useDispatch } from "react-redux";
+import { changeClickCity } from "../redux/citySlice.js";
 
 function SeoulMap() {
+  let dispatch = useDispatch();
+
   const mapData = require("./mapData.json").data;
   const cities = mapData.map((city, ind) => {
     return {
@@ -23,11 +27,13 @@ function SeoulMap() {
     if (cityRef.current.id === e.target.id && !clickSeoul) {
       setClickSeoul(true);
       setClickCityNum(null);
+      dispatch(changeClickCity([null, "서울"]))
       text = "서울은?";
     }
     else {
       setClickSeoul(false);
       setClickCityNum(ind);
+      dispatch(changeClickCity([ind, e.target.id]));
       cityRef.current = e.target;
       text = cityRef.current.id + "는?";
     }
