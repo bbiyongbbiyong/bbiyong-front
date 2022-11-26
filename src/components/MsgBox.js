@@ -8,8 +8,8 @@ function MsgBox(props) {
   return (
     <div>
       {
-        check.map((i) => { 
-          return <MsgContent key={i} check={check[i]}/> // key값 추가 및 a 없애기
+        check.map((check, i) => {
+          return <MsgContent key={i} check={check}/>
         })
       }
     </div>
