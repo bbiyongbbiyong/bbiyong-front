@@ -7,9 +7,17 @@
 }
 .disMsg{
         margin-left: auto; margin-right: auto;
-        background: rgb(255, 182, 182);
         height: 50px; width: 200px;
         border-radius: 15px;
+}
+.disMsg0 {
+        background: rgb(255, 182, 182);
+}
+.disMsg1 {
+        background: rgb(228, 227, 155);
+}
+.disMsg2 {
+        background: rgb(155, 217, 228);
 }
 .msgBox{
         margin-left: auto; margin-right: auto;
@@ -17,9 +25,12 @@
         height: 150px; width: 80%;
         border-radius: 15px;
         overflow: scroll;
-
 }
 .checkBoxLine{
         float: left;
 
+}
+ul {
+        /* 임시 */
+        padding: 20px;
 }
