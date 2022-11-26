@@ -51,39 +51,37 @@ function SeoulMap() {
   return (
     <>
       <svg width="300" height="300" viewBox="0 0 800 500">
-        <g ref={cityRef}>
-          {cities.map((city, ind) => (
-            clickCityNum === ind && clickCityNum !== null ? null : 
-            <>
-              <path
-                key={ind}
-                id={city.properties.SIG_KOR_NM}
-                d={city.properties.coord}    
-                onClick={(e) => clickCity(e, ind)}
-                fill={fillCity(city)}
-              />
-              <text transform={nameCity(ind)} textAnchor="middle" className="name">
-                {city.properties.SIG_KOR_NM}
-              </text>
-            </>
-          ))}
-          {
-            clickCityNum !== null &&
-            <>
-              <path 
-                id={cities[clickCityNum].properties.SIG_KOR_NM} 
-                d={cities[clickCityNum].properties.coord} 
-                onClick={clickCity} 
-                fill={fillCity(cities[clickCityNum])} 
-                className="selected" 
-              /> 
-              <text transform={nameCity(clickCityNum)} textAnchor="middle" className="name">
-                {cities[clickCityNum].properties.SIG_KOR_NM}
-              </text>
-            </>
-          }
-        </g>
+        {cities.map((city, ind) => (
+          <g key={ind} ref={cityRef}>
+            <path
+              key={ind}
+              id={city.properties.SIG_KOR_NM}
+              d={city.properties.coord}
+              onClick={(e) => clickCity(e, ind)}
+              fill={fillCity(city)}
+            />
+            <text transform={nameCity(ind)} textAnchor="middle" className="name">
+              {city.properties.SIG_KOR_NM}
+            </text>
+          </g>
+        ))}
+        
+        {clickCityNum !== null &&
+          <>
+            <path
+              id={cities[clickCityNum].properties.SIG_KOR_NM}
+              d={cities[clickCityNum].properties.coord}
+              onClick={clickCity}
+              fill={fillCity(cities[clickCityNum])}
+              className="selected" 
+            /> 
+            <text transform={nameCity(clickCityNum)} textAnchor="middle" className="name">
+              {cities[clickCityNum].properties.SIG_KOR_NM}
+            </text>
+          </>
+        }
       </svg>
+      
       <div ref={nameRef}> 지금 서울은? </div>
     </>
   );
