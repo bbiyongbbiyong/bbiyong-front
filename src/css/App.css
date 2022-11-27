@@ -1,5 +1,16 @@
-.App {
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* {
+  font-family: 'Pretendard';
+}
+
+#service-title {
   text-align: center;
+  margin: 20 0;
+}
+
+#service-title span {
+  color: #9E4242;
 }
 
 .mainContainer{

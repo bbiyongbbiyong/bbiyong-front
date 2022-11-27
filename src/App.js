@@ -5,7 +5,10 @@ import "./css/App.css"
 function App() {
   return (
     <div>
-      <div className="App">실시간 재난/교통 정보 모아보기 삐용삐용</div>
+      <h4 id="service-title">
+        실시간 재난/교통 정보 모아보기&nbsp;
+        <span>삐용삐용</span>
+      </h4>
       <SeoulMap />
       <CheckBox /> 
     </div>
