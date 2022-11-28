@@ -49,7 +49,7 @@ function MsgContent({check}) {
 			{
 				Msges.map((msg, i) => 
 					<ul key={i} className={"disMsg disMsg"+check}>
-						[{clickCity.cityName}]<br/>
+						[{clickCity.cityName_KOR}]<br/>
 						{msg.username}입니다. 유의하세요! 
 						{/* 받아온 데이터 */}
 					</ul>
