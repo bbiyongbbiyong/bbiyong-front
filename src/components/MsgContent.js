@@ -4,11 +4,9 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import "../css/message.css";
 
-function MsgContent({check}) {
+function MsgContent({check, title}) {
 	let state = useSelector((state) => { return state; });
 	let clickCity = state.clickCity;
-	
-	let title = ["재난문자", "지하철정보", "도로통제정보"];
 
 	const [Msges, setMsges] = useState(null);
 	const [Loading, setLoading] = useState(false);
@@ -44,7 +42,7 @@ function MsgContent({check}) {
   
 	return (
 		<>
-		<h3>{title[check]}</h3>
+		<h3>{title[check].name}</h3>
 		<div className="msgBox">
 			{
 				Msges.map((msg, i) => 
