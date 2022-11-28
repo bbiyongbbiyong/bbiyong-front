@@ -27,13 +27,13 @@ function SeoulMap() {
     if (cityRef.current.id === e.target.id && !clickSeoul) {
       setClickSeoul(true);
       setClickCityNum(null);
-      dispatch(changeClickCity([null, "서울"]))
+      dispatch(changeClickCity([null, "서울", "seoul"]))
       text = "서울은?";
     }
     else {
       setClickSeoul(false);
       setClickCityNum(ind);
-      dispatch(changeClickCity([ind, e.target.id]));
+      dispatch(changeClickCity([ind, e.target.id, cities[ind].properties.SIG_ENG_NM]));
       cityRef.current = e.target;
       text = cityRef.current.id + "는?";
     }
