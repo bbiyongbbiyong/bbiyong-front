@@ -20,6 +20,15 @@ function MsgContent({check, title}) {
 				// 서버 임시 api 호출
 				const response = await axios.get("https://jsonplaceholder.typicode.com/users");
 				setMsges(response.data);
+
+				// 테스트용 api 호출 - 2가지 json 파일 url로 테스트
+				// https://codingapple1.github.io/shop/data2.json	// 동대문구 클릭 시
+				// https://codingapple1.github.io/shop/data3.json 	// 동작구 클릭 시
+				// 초기 값 null이므로 조건 설정
+				if (clickCity.id != null) { 
+					const tmp = await axios.get("https://codingapple1.github.io/shop/data"+clickCity.id+".json");
+					console.log(tmp.data); // clickCity 값 변경 시마다, 서로 다른 값 나옴 
+				}
 		}
 		catch(e) {
 			console.log("error발생")
@@ -30,7 +39,7 @@ function MsgContent({check, title}) {
   
     useEffect(() => {
       getTraffic();
-    }, []);
+    }, [clickCity]);
   
 	if(Loading)
 		return <div>Loading...</div>;
