@@ -22,7 +22,7 @@ function SeoulMap() {
   const cityRef = useRef();
   const nameRef = useRef();
 
-  const clickCity = (e, ind) => {
+  const selectCity = (e, ind) => {
     let text = "";
     if (cityRef.current.id === e.target.id && !clickSeoul) {
       setClickSeoul(true);
@@ -58,7 +58,7 @@ function SeoulMap() {
               key={ind}
               id={city.properties.SIG_KOR_NM}
               d={city.properties.coord}
-              onClick={(e) => clickCity(e, ind)}
+              onClick={(e) => selectCity(e, ind)}
               fill={fillCity(city)}
             />
             <text transform={nameCity(ind)} textAnchor="middle" className="name">
@@ -72,7 +72,7 @@ function SeoulMap() {
             <path
               id={cities[clickCityNum].properties.SIG_KOR_NM}
               d={cities[clickCityNum].properties.coord}
-              onClick={clickCity}
+              onClick={selectCity}
               fill={fillCity(cities[clickCityNum])}
               className="selected" 
             /> 
