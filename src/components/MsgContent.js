@@ -4,11 +4,9 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import "../css/message.css";
 
-function MsgContent({check}) {
+function MsgContent({check, title}) {
 	let state = useSelector((state) => { return state; });
 	let clickCity = state.clickCity;
-	
-	let title = ["재난문자", "지하철정보", "도로통제정보"];
 
 	const [Msges, setMsges] = useState(null);
 	const [Loading, setLoading] = useState(false);
@@ -22,6 +20,15 @@ function MsgContent({check}) {
 				// 서버 임시 api 호출
 				const response = await axios.get("https://jsonplaceholder.typicode.com/users");
 				setMsges(response.data);
+
+				// 테스트용 api 호출 - 2가지 json 파일 url로 테스트
+				// https://codingapple1.github.io/shop/data2.json	// 동대문구 클릭 시
+				// https://codingapple1.github.io/shop/data3.json 	// 동작구 클릭 시
+				// 초기 값 null이므로 조건 설정
+				if (clickCity.id != null) { 
+					const tmp = await axios.get("https://codingapple1.github.io/shop/data"+clickCity.id+".json");
+					console.log(tmp.data); // clickCity 값 변경 시마다, 서로 다른 값 나옴 
+				}
 		}
 		catch(e) {
 			console.log("error발생")
@@ -32,7 +39,7 @@ function MsgContent({check}) {
   
     useEffect(() => {
       getTraffic();
-    }, []);
+    }, [clickCity]);
   
 	if(Loading)
 		return <div>Loading...</div>;
@@ -44,7 +51,7 @@ function MsgContent({check}) {
   
 	return (
 		<>
-		<h3>{title[check]}</h3>
+		<h3>{title[check].name}</h3>
 		<div className="msgBox">
 			{
 				Msges.map((msg, i) => 
