@@ -25,13 +25,13 @@ function MsgContent({check, title}) {
 				// https://codingapple1.github.io/shop/data2.json	// 동대문구 클릭 시
 				// https://codingapple1.github.io/shop/data3.json 	// 동작구 클릭 시
 				// 초기 값 null이므로 조건 설정
-				if (clickCity.id != null) { 
-					const tmp = await axios.get("https://codingapple1.github.io/shop/data"+clickCity.id+".json");
+				if (clickCity.index != null) { 
+					const tmp = await axios.get("https://codingapple1.github.io/shop/data"+clickCity.index+".json");
 					console.log(tmp.data); // clickCity 값 변경 시마다, 서로 다른 값 나옴 
 				}
 		}
 		catch(e) {
-			console.log("error발생")
+			console.log(e);
 			setError(e);
 		}
 		setLoading(false);
