@@ -8,7 +8,7 @@ function MsgBox({check, title}) {
     <div>
       {
         check.map((check, i) => {
-          return <MsgContent key={i} check={check} title={title}/>
+          return <MsgContent key={i} title={title[check]}/>
         })
       }
     </div>

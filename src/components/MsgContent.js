@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import "../css/message.css";
 
-function MsgContent({check, title}) {
+function MsgContent({title}) {
 	let state = useSelector((state) => { return state; });
 	let clickCity = state.clickCity;
 
@@ -44,18 +44,18 @@ function MsgContent({check, title}) {
 	if(Loading)
 		return <div>Loading...</div>;
 	if(Error)
-		return <div>Error{" "+title[check]}</div>;
+		return <div>Error{" "+title}</div>;
 	if(!Msges)
 		return null;  
 
   
 	return (
 		<>
-		<h3>{title[check].name}</h3>
+		<h3>{title.name}</h3>
 		<div className="msgBox">
 			{
 				Msges.map((msg, i) => 
-					<ul key={i} className={"disMsg disMsg"+check}>
+					<ul key={i} className={"disMsg disMsg"+title.id}>
 						[{clickCity.cityName_KOR}]<br/>
 						{msg.username}입니다. 유의하세요! 
 						{/* 받아온 데이터 */}
