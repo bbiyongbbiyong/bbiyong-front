@@ -12,7 +12,7 @@ function MsgContent({title}) {
 	const [Loading, setLoading] = useState(false);
 	const [Error, setError] = useState(null);
 
-	const getTraffic = async() => {
+	const getDisasterInfo = async() => {
 		try {
 				setError(null);
 				setMsges(null);
@@ -20,15 +20,6 @@ function MsgContent({title}) {
 				// 서버 임시 api 호출
 				const response = await axios.get("https://jsonplaceholder.typicode.com/users");
 				setMsges(response.data);
-
-				// 테스트용 api 호출 - 2가지 json 파일 url로 테스트
-				// https://codingapple1.github.io/shop/data2.json	// 동대문구 클릭 시
-				// https://codingapple1.github.io/shop/data3.json 	// 동작구 클릭 시
-				// 초기 값 null이므로 조건 설정
-				if (clickCity.index != null) { 
-					const tmp = await axios.get("https://codingapple1.github.io/shop/data"+clickCity.index+".json");
-					console.log(tmp.data); // clickCity 값 변경 시마다, 서로 다른 값 나옴 
-				}
 		}
 		catch(e) {
 			console.log(e);
@@ -38,7 +29,7 @@ function MsgContent({title}) {
 	};
   
     useEffect(() => {
-      getTraffic();
+		getDisasterInfo();
     }, [clickCity]);
   
 	if(Loading)
