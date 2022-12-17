@@ -19,6 +19,7 @@ function MsgContent({title}) {
 				setLoading(true);
 				// 서버 임시 api 호출
 				const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+				// const response = await axios.get("http://3.34.204.213:8080/"+title.path+"/10");
 				setMsges(response.data);
 		}
 		catch(e) {
@@ -43,14 +44,17 @@ function MsgContent({title}) {
 	return (
 		<>
 		<h3>{title.name}</h3>
-		<div className="msgBox">
+		<div className="msg-box">
 			{
 				Msges.map((msg, i) => 
-					<ul key={i} className={"disMsg disMsg"+title.id}>
+				<>
+					<ul key={i} className={"dis-msg dis-msg"+title.id}>
 						[{clickCity.cityName_KOR}]<br/>
 						{msg.username}입니다. 유의하세요! 
 						{/* 받아온 데이터 */}
 					</ul>
+					<div className="dis-date">2022.12.17 17:11</div>
+				</>
 				)
 			}
 		</div>

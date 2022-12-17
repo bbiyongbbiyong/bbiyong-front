@@ -1,3 +1,20 @@
+ul {
+        padding: 5px;
+        margin-left: auto; margin-right: auto;
+        margin-bottom: 0px;
+        font-size: 10px;
+        font-weight: bold;
+}
+
+h3 {
+        display: inline-block;
+        margin-top : 15px;
+        margin-bottom: 5px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #5a6478;
+}
+
 .messages {
         margin-left: auto; margin-right: auto;
         display: table-cell;
@@ -5,32 +22,66 @@
         text-align: left;
         vertical-align: middle;
 }
-.disMsg{
+.msg-box{
         margin-left: auto; margin-right: auto;
-        height: 50px; width: 200px;
-        border-radius: 15px;
-}
-.disMsg0 {
-        background: rgb(255, 182, 182);
-}
-.disMsg1 {
-        background: rgb(228, 227, 155);
-}
-.disMsg2 {
-        background: rgb(155, 217, 228);
-}
-.msgBox{
-        margin-left: auto; margin-right: auto;
+        margin-bottom: 5px;
         background: white;
-        height: 150px; width: 80%;
-        border-radius: 15px;
-        overflow: scroll;
+        height: 100px;
+        border-radius: 10px;
+        overflow: auto;
 }
-.checkBoxLine{
-        float: left;
 
+.msg-box::-webkit-scrollbar {
+        width: 7px;
 }
-ul {
-        /* 임시 */
-        padding: 20px;
+.msg-box::-webkit-scrollbar-thumb {
+        background-color: #828a9a;
+        border-radius: 10px;
+        background-clip: padding-box;
+        border: 2px solid transparent;
+}
+.msg-box::-webkit-scrollbar-track {
+        border-radius: 10px;
+        box-shadow: inset 0px 0px 5px white;
+}
+
+.msg-container {
+        margin-left: 10px;
+        margin-right: 10px;
+}
+
+.dis-msg{
+        margin-left: auto; margin-right: 5px;
+        margin-top: 8px;
+        width: 92%;
+        border-radius: 5px;
+}
+.dis-msg0 {
+        background: rgb(255, 155, 155);
+}
+.dis-msg1 {
+        background: rgb(245, 245, 155);
+}
+.dis-msg2 {
+        background: rgb(50, 140, 2257);
+}
+.dis-date {
+        text-align: right;
+        margin-right: 5px;
+        font-size: 10px;        
+        font-weight: bold;
+        color: #abadb2;
+}
+
+.check-box {
+        display: inline-block;
+        float: right;
+        padding-right: 5px;
+        font-size: 10px;
+        font-weight: bold;
+        color: #3d424b;
+}
+
+input {
+        accent-color: white;
 }

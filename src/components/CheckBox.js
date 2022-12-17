@@ -31,23 +31,25 @@ export default function CheckBox() {
   }
 
   return (
-    <div className="mainContainer">
+    <div className="main-container">
+      <div className="check-box">
       <input
-        type='checkbox'
+        type='checkbox' id="total"
         onChange={(e) => handleAllCheck(e.target.checked)}
         checked={checkItems.length === title.length ? true : false} 
-      />전체
+      /><label for="total">전체</label>
+      
 
       {title?.map((title, key) => (
         <span key={key}>
           <input
-            type='checkbox'
+            type='checkbox' id={key}
             onChange={(e) => handleSingleCheck(e.target.checked, title.id)}
             checked={checkItems.includes(title.id) ? true : false} 
-            />{title.name}
+            /><label for={key}>{title.name}</label>
         </span>
         ))}
-
+      </div>
       <MsgBox check={checkItems} title={title}/>
     </div>
     
