@@ -24,3 +24,7 @@ path:hover {
     font-weight: bold;
     cursor: pointer;
 }
+
+h2 {
+    margin: -20px 0 10px 10px;
+}
