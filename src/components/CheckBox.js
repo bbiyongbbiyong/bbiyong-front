@@ -4,9 +4,9 @@ import MsgBox from './MsgBox.js';
 
 export default function CheckBox() {
   const title = [ 
-    {id: 0, name: '재난문자'},
-    {id: 1, name: '지하철정보'},
-    {id: 2, name: '도로통제정보'},
+    {id: 0, name: '재난문자', path: 'emerMsg'},
+    {id: 1, name: '지하철정보', path: 'twitter'},
+    {id: 2, name: '도로통제정보', path: 'accident'},
   ];
 
   const [checkItems, setCheckItems] = useState([0, 1, 2]);
@@ -31,23 +31,25 @@ export default function CheckBox() {
   }
 
   return (
-    <div className="mainContainer">
+    <div className="main-container">
+      <div className="check-box">
       <input
-        type='checkbox'
+        type='checkbox' id="total"
         onChange={(e) => handleAllCheck(e.target.checked)}
         checked={checkItems.length === title.length ? true : false} 
-      />전체
+      /><label for="total">전체</label>
+      
 
       {title?.map((title, key) => (
         <span key={key}>
           <input
-            type='checkbox'
+            type='checkbox' id={key}
             onChange={(e) => handleSingleCheck(e.target.checked, title.id)}
             checked={checkItems.includes(title.id) ? true : false} 
-            />{title.name}
+            /><label for={key}>{title.name}</label>
         </span>
         ))}
-
+      </div>
       <MsgBox check={checkItems} title={title}/>
     </div>
     
