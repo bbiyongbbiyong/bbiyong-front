@@ -63,11 +63,16 @@ function MsgContent({title}) {
 	if(Error) return <div>Error{" "+title}</div>;
 	if(!Msges) return null;  
 
+	let display = "";
+	if(Msges.length === 0)
+		display = "dis-msg-none";	
+
 	return (
 		<>
 		<h3>{title.name}</h3>
-		<div className="msg-box">
+		<div className={"msg-box"}>
 			{
+				(display === "dis-msg-none") ? <div className={"dis-msg "+display}>최근 수신된 정보가 없습니다</div> :
 				Msges.map((msg, i) => 
 				<>
 					<ul key={i} className="dis-msg" style={{"backgroundColor": fillMsg(msg)}}>

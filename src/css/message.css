@@ -61,6 +61,13 @@ input {
         border-radius: 5px;
 }
 
+.dis-msg-none {
+        margin-top: 37px;
+        text-align: center;
+        font-weight: bold;
+        color: #abadb2;
+}
+
 .dis-date {
         text-align: right;
         margin-right: 5px;
