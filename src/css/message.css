@@ -60,15 +60,7 @@ input {
         width: 92%;
         border-radius: 5px;
 }
-.dis-msg0 {
-        background: rgb(255, 155, 155);
-}
-.dis-msg1 {
-        background: rgb(245, 245, 155);
-}
-.dis-msg2 {
-        background: rgb(50, 140, 2257);
-}
+
 .dis-date {
         text-align: right;
         margin-right: 5px;
