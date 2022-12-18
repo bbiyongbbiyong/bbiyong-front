@@ -32,15 +32,37 @@ function MsgContent({title}) {
     useEffect(() => {
 		getDisasterInfo();
     }, [clickCity]);
-  
-	if(Loading)
-		return <div>Loading...</div>;
-	if(Error)
-		return <div>Error{" "+title}</div>;
-	if(!Msges)
-		return null;  
 
-  
+	const fillMsg = (target) => {
+		if(title.path === "emerMsg") return "rgb(255, 155, 155)";
+		else if (title.path === "metro") return "rgb(245, 245, 155)";
+		else 
+			switch(target.accidentType){
+				case "A01":
+				case "A02":
+				case "A03":
+				case "A05":
+				case "A06":
+				case "A07":
+				case "A08":
+				case "A09":
+					return "#D9EBFF";
+					
+				case "A04":
+					return "#3E90EA"
+				
+				case "A10":
+					return "#A9CFF8"	
+
+				default:
+					return "#D9D9D9";
+			}
+	}
+
+	if(Loading) return <div>Loading...</div>;
+	if(Error) return <div>Error{" "+title}</div>;
+	if(!Msges) return null;  
+
 	return (
 		<>
 		<h3>{title.name}</h3>
@@ -48,7 +70,7 @@ function MsgContent({title}) {
 			{
 				Msges.map((msg, i) => 
 				<>
-					<ul key={i} className={"dis-msg dis-msg"+title.id}>
+					<ul key={i} className="dis-msg" style={{"backgroundColor": fillMsg(msg)}}>
 						{msg.accidentInfo}
 					</ul>
 					<div className="dis-date">{msg.startDate}</div>
