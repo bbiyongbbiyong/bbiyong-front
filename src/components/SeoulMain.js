@@ -24,7 +24,6 @@ export default function SeoulMain() {
 				setLoading(true);
 				const response = await axios.get("http://3.34.204.213:8080/accident/most");
 				setAccident(response.data);
-                console.log(response.data);
 		}
 		catch(e) {
 			console.log("사고 유형 불러오기 실패")
