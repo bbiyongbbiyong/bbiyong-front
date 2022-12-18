@@ -5,7 +5,7 @@ import MsgBox from './MsgBox.js';
 export default function CheckBox() {
   const title = [ 
     {id: 0, name: '재난문자', path: 'emerMsg'},
-    {id: 1, name: '지하철정보', path: 'twitter'},
+    {id: 1, name: '지하철정보', path: 'metro'},
     {id: 2, name: '도로통제정보', path: 'accident'},
   ];
 
