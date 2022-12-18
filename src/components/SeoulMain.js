@@ -11,7 +11,6 @@ export default function SeoulMain() {
     let day = ('0' + today.getDate()).slice(-2);
     let hours = (today.getHours() > 12) ? "오후 "+(today.getHours()-12) : "오전" + today.getHours();
     
-    let tempData = {"status":200,"message":"성공","data":{"accidentType":"A01","locationId":2}}
     const mapData = require("./mapData.json").data;
     
     const [Accident, setAccident] = useState(null);
@@ -33,12 +32,9 @@ export default function SeoulMain() {
 		setLoading(false);
 	};
 
-
     useEffect(() => {
 		getinfo();
-    });
-    console.log(Accident);
-    let city = mapData[tempData.data.locationId-2].SIG_KOR_NM;
+    }, []);
     
       if(Loading)
           return <div>Loading...</div>;
@@ -46,16 +42,17 @@ export default function SeoulMain() {
           return <div>Error</div>;
       if(!Accident)
           return null;  
-
+    let city = mapData[Accident.data.locationId-2].SIG_KOR_NM;
+    let accidentName = accidentType[Accident.data.accidentType];
    
     return (
         <div className="seoul-main">
             <p className="seoul-main-date">{year}년 {month}월 {day}일 {hours}시 기준</p>
             <p>지난 일주일 간<br/>
-            <span className="seoul-main-city">{city}</span>에서 <span className="seoul-main-accident">{accidentType[Accident.data.accidentType]}</span>(이)가<br/>
+            <span className="seoul-main-city">{city}</span>에서 <span className="seoul-main-accident">{accidentName}</span>(이)가<br/>
             가장 많이 발생했어요.</p>
             <p>{city}를 지나실 때는<br/>
-            {accidentType[Accident.data.accidentType]}에 주의하세요 :)</p>
+            {accidentName}에 주의하세요 :)</p>
         </div>
     );
     
