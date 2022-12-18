@@ -11,6 +11,13 @@ function MsgContent({title}) {
 	const [Msges, setMsges] = useState(null);
 	const [Loading, setLoading] = useState(false);
 	const [Error, setError] = useState(null);
+
+	const accidentTap = [
+    { tap: "공사", color: "#3E90EA" },
+    { tap: "집회/행사", color: "#A9CFF8" },
+    { tap: "사고", color: "#D9EBFF" },
+    { tap: "기타", color: "#D9D9D9" },
+  ];
 	const getDisasterInfo = async() => {
 		try {
 				setError(null);
@@ -70,6 +77,15 @@ function MsgContent({title}) {
 	return (
 		<>
 		<h3>{title.name}</h3>
+		{title.path === "accident" && 
+		<span id="accident-tap"> 
+			{accidentTap.map((e, ind) => 
+			<> 
+			<div className="tap-circle" style={{"backgroundColor": `${e.color}`}}/>
+			<p className="tap-text">{e.tap}&nbsp;</p>
+			{ind < 3 && <p className="tap-text"> | </p>}
+			</>)}
+		</span>}
 		<div className={"msg-box"}>
 			{
 				(display === "dis-msg-none") ? <div className={"dis-msg "+display}>최근 수신된 정보가 없습니다</div> :

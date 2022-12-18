@@ -107,3 +107,21 @@ input {
         line-height: 10px;
         color: #717376;
 }
+
+#accident-tap {
+        float: right;
+        margin-top: 13px;
+}
+
+.tap-circle {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 15px;
+        margin-right: 2px;
+}
+
+.tap-text {
+        display: inline;
+        font-size: 6px;
+}
