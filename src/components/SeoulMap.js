@@ -1,9 +1,9 @@
-import "../css/SeoulMap.css";
 import { useEffect, useRef, useState } from "react";
-import centerCoord from "./mapCoord";
 import { useDispatch } from "react-redux";
 import { changeClickCity } from "../redux/citySlice.js";
+import centerCoord from "./mapCoord";
 import axios from "axios";
+import "../css/SeoulMap.css";
 
 function SeoulMap() {
   let dispatch = useDispatch();
@@ -41,7 +41,7 @@ function SeoulMap() {
     else {
       setClickSeoul(false);
       setClickCityNum(ind);
-      dispatch(changeClickCity([ind, e.target.id, cities[ind].properties.SIG_ENG_NM], cities[ind].properties.SIG_ID));
+      dispatch(changeClickCity([ind, e.target.id, cities[ind].properties.SIG_ENG_NM, cities[ind].properties.SIG_ID]));
       cityRef.current = e.target;
       text = cityRef.current.id + "는?";
     }
