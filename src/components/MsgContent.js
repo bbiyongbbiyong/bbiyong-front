@@ -38,7 +38,7 @@ function MsgContent({title, checkCount}) {
 	
     useEffect(() => {
 		getDisasterInfo();
-    }, [clickCity]);
+    }, [clickCity, checkCount]);
 
 
 	const fillMsg = (target) => {
