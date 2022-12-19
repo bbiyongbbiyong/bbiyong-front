@@ -90,6 +90,16 @@ input {
         padding: 5px 10px 0 0;
 }
 
+.checkbox-name{
+        font-size: 6px;
+        position: relative;
+        top: -3.5px;
+}
+
+input {
+        margin-left: 8px;
+}
+
 .seoul-main {
         padding: 30px;
         padding-top: 20px;
