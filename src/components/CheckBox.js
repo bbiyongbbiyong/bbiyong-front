@@ -42,6 +42,7 @@ export default function CheckBox() {
       ) : (
         <>
           <div className="check-box">
+            <div id="check-box-container">
             <input
               type="checkbox"
               id="total"
@@ -63,6 +64,7 @@ export default function CheckBox() {
                 <label for={key}>{title.name}</label>
               </span>
             ))}
+            </div>
           </div>
           <MsgBox check={checkItems} title={title} />
         </>
