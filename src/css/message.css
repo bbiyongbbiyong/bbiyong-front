@@ -8,8 +8,7 @@ ul {
 
 h3 {
         display: inline-block;
-        margin-top : 15px;
-        margin-bottom: 5px;
+        margin: 0;
         font-size: 12px;
         font-weight: bold;
         color: #5a6478;
@@ -26,9 +25,11 @@ input {
         text-align: left;
         vertical-align: middle;
 }
+
 .msg-box{
-        margin-left: auto; margin-right: auto;
-        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
         background: white;
         height: 100px;
         border-radius: 10px;
@@ -85,11 +86,25 @@ input {
 
 .check-box {
         display: inline-block;
-        float: right;
-        padding-right: 5px;
         font-size: 10px;
         font-weight: bold;
         color: #3d424b;
+        width: inherit;
+}
+
+#check-box-container {
+        float: right;
+        padding: 5px 10px 0 0;
+}
+
+.checkbox-name{
+        font-size: 6px;
+        position: relative;
+        top: -3.5px;
+}
+
+input {
+        margin-left: 8px;
 }
 
 .seoul-main {
@@ -115,9 +130,15 @@ input {
         color: #717376;
 }
 
+#title-box {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+}
+
 #accident-tap {
-        float: right;
-        margin-top: 13px;
+        display: inline-block;
+        height: 10px;
 }
 
 .tap-circle {

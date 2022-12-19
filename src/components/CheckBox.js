@@ -42,13 +42,14 @@ export default function CheckBox() {
       ) : (
         <>
           <div className="check-box">
+            <div id="check-box-container">
             <input
               type="checkbox"
               id="total"
               onChange={(e) => handleAllCheck(e.target.checked)}
               checked={checkItems.length === title.length ? true : false}
             />
-            <label for="total">전체</label>
+            <label for="total" className="checkbox-name">전체</label>
 
             {title?.map((title, key) => (
               <span key={key}>
@@ -60,9 +61,10 @@ export default function CheckBox() {
                   }
                   checked={checkItems.includes(title.id) ? true : false}
                 />
-                <label for={key}>{title.name}</label>
+                <label for={key} className="checkbox-name">{title.name}</label>
               </span>
             ))}
+            </div>
           </div>
           <MsgBox check={checkItems} title={title} />
         </>

@@ -76,29 +76,32 @@ function MsgContent({title}) {
 
 	return (
 		<>
-		<h3>{title.name}</h3>
-		{title.path === "accident" && 
-		<span id="accident-tap"> 
-			{accidentTap.map((e, ind) => 
-			<> 
-			<div className="tap-circle" style={{"backgroundColor": `${e.color}`}}/>
-			<p className="tap-text">{e.tap}&nbsp;</p>
-			{ind < 3 && <p className="tap-text"> | </p>}
-			</>)}
-		</span>}
-		<div className={"msg-box"}>
-			{
-				(display === "dis-msg-none") ? <div className={"dis-msg "+display}>최근 수신된 정보가 없습니다</div> :
-				Msges.map((msg, i) => 
-				<>
-					<ul key={i} className="dis-msg" style={{"backgroundColor": fillMsg(msg)}}>
-						{msg.accidentInfo}
-					</ul>
-					<div className="dis-date">{msg.startDate}</div>
-				</>
-				)
-			}
-		</div>
+			<div id="title-box">
+				<h3>{title.name}</h3>
+				{title.path === "accident" && 
+					<div id="accident-tap"> 
+						{accidentTap.map((e, ind) => 
+						<> 
+							<div className="tap-circle" style={{"backgroundColor": `${e.color}`}}/>
+							<p className="tap-text">{e.tap}&nbsp;</p>
+							{ind < 3 && <p className="tap-text"> | </p>}
+						</>)}
+					</div>
+				}
+			</div>
+
+			<div className={"msg-box"}>
+				{(display === "dis-msg-none") ? <div className={"dis-msg "+display}>최근 수신된 정보가 없습니다</div> :
+					Msges.map((msg, i) => 
+					<>
+						<ul key={i} className="dis-msg" style={{"backgroundColor": fillMsg(msg)}}>
+							{msg.accidentInfo}
+						</ul>
+						<div className="dis-date">{msg.startDate}</div>
+					</>
+					)
+				}
+			</div>
 		</>
 	)
   }
