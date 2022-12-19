@@ -12,11 +12,3 @@
 #service-title span {
   color: #9E4242;
 }
-
-.main-container{
-  margin-left: auto; margin-right: auto;
-  background: rgb(255, 235, 214);
-  height: 100%; width: 350px;
-  border-radius: 10px;
-  padding-bottom: 15px;
-}

@@ -4,12 +4,19 @@ import "../css/message.css";
 
 function MsgBox({check, title}) {
   check.sort();
+
+  const sizeMsg = () => {
+    if(check.length < 2) {
+      return "40vh";
+    }
+  }
+
   return (
-    <div className="msg-container">
+    <div className="msg-container" style={{"height":sizeMsg()}}>
       {
         (check.length === 0) ? <div className="check-none">체크박스를 선택해주세요!</div> :
-        check.map((check, i) => {
-          return <MsgContent key={i} title={title[check]}/>
+        check.map((checkItem, i) => {
+          return <MsgContent key={i} title={title[checkItem]} checkCount={check.length}/>
         })
       }
     </div>

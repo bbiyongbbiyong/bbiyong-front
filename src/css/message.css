@@ -18,6 +18,15 @@ input {
         accent-color: white;
 }
 
+.main-container{
+        margin-left: auto; margin-right: auto;
+        background: rgb(255, 235, 214);
+        width: 350px;
+        border-radius: 10px;
+        padding-bottom: 15px;
+}
+
+
 .messages {
         margin-left: auto; margin-right: auto;
         display: table-cell;
@@ -31,7 +40,6 @@ input {
         margin-right: auto;
         margin-bottom: 10px;
         background: white;
-        height: 100px;
         border-radius: 10px;
         overflow: auto;
 }
@@ -56,10 +64,11 @@ input {
 }
 
 .check-none {
-        padding: 60px;
         text-align: center;
         font-weight: bold;
         color: #6f7072;
+        position: relative;
+        top: 40%;
 }
 
 .dis-msg{
@@ -70,10 +79,11 @@ input {
 }
 
 .dis-msg-none {
-        margin-top: 37px;
         text-align: center;
         font-weight: bold;
         color: #abadb2;
+        position: relative;
+        top: 33%;
 }
 
 .dis-date {
