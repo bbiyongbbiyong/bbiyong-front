@@ -9,8 +9,11 @@ export default function SeoulMain() {
     let year = today.getFullYear();
     let month = ('0' + (today.getMonth() + 1)).slice(-2);
     let day = ('0' + today.getDate()).slice(-2);
-    let hours = (today.getHours() > 12) ? "오후 "+(today.getHours()-12) : "오전" + today.getHours();
-    
+    let hours = (today.getHours() >= 12) ? (today.getHours() === 12) ?
+    "오후 "+today.getHours() : "오후 "+today.getHours()-12 : 
+    "오전 "+ today.getHours();
+
+   
     const mapData = require("./mapData.json").data;
     
     const [Accident, setAccident] = useState(null);
