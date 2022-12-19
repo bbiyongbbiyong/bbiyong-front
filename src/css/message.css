@@ -64,10 +64,11 @@ input {
 }
 
 .check-none {
-        padding: 60px;
         text-align: center;
         font-weight: bold;
         color: #6f7072;
+        position: relative;
+        top: 40%;
 }
 
 .dis-msg{
