@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import "../css/message.css";
 
-function MsgContent({title}) {
+function MsgContent({title, checkCount}) {
 	let state = useSelector((state) => { return state; });
 	let clickCity = state.clickCity;
 	
@@ -40,6 +40,7 @@ function MsgContent({title}) {
 		getDisasterInfo();
     }, [clickCity]);
 
+
 	const fillMsg = (target) => {
 		if(title.path === "emerMsg") return "rgb(255, 155, 155)";
 		else if (title.path === "metro") return "rgb(245, 245, 155)";
@@ -66,6 +67,13 @@ function MsgContent({title}) {
 			}
 	}
 
+	const sizeMsgBox = () => {
+		if(checkCount < 2) {
+			return "38vh";
+		}
+
+		return "100px";
+	}
 	if(Loading) return <div>Loading...</div>;
 	if(Error) return <div>Error{" "+title}</div>;
 	if(!Msges) return null;  
@@ -90,7 +98,7 @@ function MsgContent({title}) {
 				}
 			</div>
 
-			<div className={"msg-box"}>
+			<div className={"msg-box"} style={{"height":sizeMsgBox()}}>
 				{(display === "dis-msg-none") ? <div className={"dis-msg "+display}>최근 수신된 정보가 없습니다</div> :
 					Msges.map((msg, i) => 
 					<>
