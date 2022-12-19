@@ -54,6 +54,13 @@ input {
         margin-right: 10px;
 }
 
+.check-none {
+        padding: 60px;
+        text-align: center;
+        font-weight: bold;
+        color: #6f7072;
+}
+
 .dis-msg{
         margin-left: auto; margin-right: auto;
         margin-top: 8px;
