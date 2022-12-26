@@ -25,7 +25,7 @@ export default function SeoulMain() {
 				setError(null);
 				setAccident(null);
 				setLoading(true);
-				const response = await axios.get("http://3.34.204.213:8080/accident/most");
+				const response = await axios.get("https://api.bbiyong-bbiyong.seoul.kr/accident/most");
 				setAccident(response.data);
 		}
 		catch(e) {

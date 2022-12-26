@@ -19,11 +19,11 @@ function SeoulMap() {
 
   useEffect(() => {
     async function test(){
-      const tmp = await axios.get("http://3.34.204.213:8080/location");
+      const location = await axios.get("https://api.bbiyong-bbiyong.seoul.kr/location");
       setCities(mapData.map((city) => {
         return {
           properties: city,
-          length: tmp.data.data[city.SIG_ID], 
+          length: location.data.data[city.SIG_ID], 
         };
       }));
     }
