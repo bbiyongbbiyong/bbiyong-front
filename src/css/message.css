@@ -14,9 +14,9 @@ h3 {
         color: #5a6478;
 }
 
-input {
+/* input {
         accent-color: white;
-}
+} */
 
 .main-container{
         margin-left: auto; margin-right: auto;
@@ -161,4 +161,13 @@ input {
 .tap-text {
         display: inline;
         font-size: 6px;
+}
+
+.start {
+  opacity : 0
+}
+
+.end {
+  opacity : 1;
+  transition : opacity 1.2s;
 }
