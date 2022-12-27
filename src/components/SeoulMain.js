@@ -19,6 +19,7 @@ export default function SeoulMain() {
     const [Accident, setAccident] = useState(null);
 	const [Loading, setLoading] = useState(false);
 	const [Error, setError] = useState(null);
+    const [fade, setFade] = useState("");
 
     const getinfo = async() => {
 		try {
@@ -37,16 +38,18 @@ export default function SeoulMain() {
 
     useEffect(() => {
 		getinfo();
+        setTimeout(() => { setFade("end") }, 100)
+		return () => { setFade("") }
     }, []);
     
       if(Error) return <div>Error</div>;
       if(!Accident) return null;  
-      
+
     let city = mapData[Accident.data.locationId-2].SIG_KOR_NM;
     let accidentName = accidentType[Accident.data.accidentType];
    
     return (
-        <div className="seoul-main">
+        <div className={"seoul-main start "+fade}>
             <p className="seoul-main-date">{year}년 {month}월 {day}일 {hours}시 기준</p>
             <p>지난 일주일 간<br/>
             <span className="seoul-main-city">{city}</span>에서 <span className="seoul-main-accident">{accidentName}</span>(이)가<br/>

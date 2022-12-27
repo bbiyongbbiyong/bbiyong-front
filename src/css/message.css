@@ -162,3 +162,12 @@ input {
         display: inline;
         font-size: 6px;
 }
+
+.start {
+  opacity : 0
+}
+
+.end {
+  opacity : 1;
+  transition : opacity 1.2s;
+}
