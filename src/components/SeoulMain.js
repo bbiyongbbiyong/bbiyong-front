@@ -39,12 +39,9 @@ export default function SeoulMain() {
 		getinfo();
     }, []);
     
-      if(Loading)
-          return <div>Loading...</div>;
-      if(Error)
-          return <div>Error</div>;
-      if(!Accident)
-          return null;  
+      if(Error) return <div>Error</div>;
+      if(!Accident) return null;  
+      
     let city = mapData[Accident.data.locationId-2].SIG_KOR_NM;
     let accidentName = accidentType[Accident.data.accidentType];
    

@@ -74,7 +74,7 @@ function MsgContent({title, checkCount}) {
 
 		return "100px";
 	}
-	if(Loading) return <div>Loading...</div>;
+	
 	if(Error) return <div>Error{" "+title}</div>;
 	if(!Msges) return null;  
 
