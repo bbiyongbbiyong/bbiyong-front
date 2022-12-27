@@ -11,6 +11,7 @@ function MsgContent({title, checkCount}) {
 	const [Msges, setMsges] = useState(null);
 	const [Loading, setLoading] = useState(false);
 	const [Error, setError] = useState(null);
+	const [fade, setFade] = useState("")
 
 	const accidentTap = [
     { tap: "공사", color: "#3E90EA" },
@@ -38,6 +39,8 @@ function MsgContent({title, checkCount}) {
 	
     useEffect(() => {
 		getDisasterInfo();
+		setTimeout(() => { setFade("end") }, 100)
+		return () => { setFade("") }
     }, [clickCity, checkCount]);
 
 
@@ -74,7 +77,7 @@ function MsgContent({title, checkCount}) {
 
 		return "100px";
 	}
-	if(Loading) return <div>Loading...</div>;
+	
 	if(Error) return <div>Error{" "+title}</div>;
 	if(!Msges) return null;  
 
@@ -98,7 +101,7 @@ function MsgContent({title, checkCount}) {
 				}
 			</div>
 
-			<div className={"msg-box"} style={{"height":sizeMsgBox()}}>
+			<div className={"msg-box start "+fade} style={{"height":sizeMsgBox()}}>
 				{(display === "dis-msg-none") ? <div className={"dis-msg "+display}>최근 수신된 정보가 없습니다</div> :
 					Msges.map((msg, i) => 
 					<>
