@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import '../css/message.css';
-import accidentType from './accidentType.js';
+import accidentType from '../data/accidentType.js';
 
 export default function SeoulMain() {
   const today = new Date();
@@ -14,7 +14,7 @@ export default function SeoulMain() {
     today.getHours() >= 12 ? `오후 ${today.getHours() - 12}` : `오전 ${today.getHours()}`;
 
   // eslint-disable-next-line global-require
-  const mapData = require('./mapData.json').data;
+  const mapData = require('../data/mapData.json').data;
 
   const [Accident, setAccident] = useState(null);
   const [, setLoading] = useState(false);

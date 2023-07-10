@@ -3,16 +3,16 @@ import { useDispatch } from 'react-redux';
 
 import axios from 'axios';
 
+import centerCoord from '../data/mapCoord';
 import { changeClickCity } from '../redux/citySlice';
 
-import centerCoord from './mapCoord';
 import '../css/SeoulMap.css';
 
 function SeoulMap() {
   const dispatch = useDispatch();
 
   // eslint-disable-next-line global-require
-  const mapData = require('./mapData.json').data;
+  const mapData = require('../data/mapData.json').data;
   const [cities, setCities] = useState([]);
 
   const [clickSeoul, setClickSeoul] = useState(true);
