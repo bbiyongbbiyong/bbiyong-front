@@ -1,173 +1,176 @@
 ul {
-        padding: 5px;
-        margin-left: auto; margin-right: auto;
-        margin-bottom: 0px;
-        font-size: 10px;
-        font-weight: bold;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0px;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 h3 {
-        display: inline-block;
-        margin: 0;
-        font-size: 12px;
-        font-weight: bold;
-        color: #5a6478;
+  display: inline-block;
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: #5a6478;
 }
 
 /* input {
         accent-color: white;
 } */
 
-.main-container{
-        margin-left: auto; margin-right: auto;
-        background: rgb(255, 235, 214);
-        width: 350px;
-        border-radius: 10px;
-        padding-bottom: 15px;
+.main-container {
+  margin-left: auto;
+  margin-right: auto;
+  background: rgb(255, 235, 214);
+  width: 350px;
+  border-radius: 10px;
+  padding-bottom: 15px;
 }
-
 
 .messages {
-        margin-left: auto; margin-right: auto;
-        display: table-cell;
-        padding-left: 10px;
-        text-align: left;
-        vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  display: table-cell;
+  padding-left: 10px;
+  text-align: left;
+  vertical-align: middle;
 }
 
-.msg-box{
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 10px;
-        background: white;
-        border-radius: 10px;
-        overflow: auto;
+.msg-box {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  background: white;
+  border-radius: 10px;
+  overflow: auto;
 }
 
 .msg-box::-webkit-scrollbar {
-        width: 7px;
+  width: 7px;
 }
 .msg-box::-webkit-scrollbar-thumb {
-        background-color: #828a9a;
-        border-radius: 10px;
-        background-clip: padding-box;
-        border: 2px solid transparent;
+  background-color: #828a9a;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
 .msg-box::-webkit-scrollbar-track {
-        border-radius: 10px;
-        box-shadow: inset 0px 0px 5px white;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
 }
 
 .msg-container {
-        margin-left: 10px;
-        margin-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .check-none {
-        text-align: center;
-        font-weight: bold;
-        color: #6f7072;
-        position: relative;
-        top: 40%;
+  text-align: center;
+  font-weight: bold;
+  color: #6f7072;
+  position: relative;
+  top: 40%;
 }
 
-.dis-msg{
-        margin-left: auto; margin-right: auto;
-        margin-top: 8px;
-        width: 92%;
-        border-radius: 5px;
+.dis-msg {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8px;
+  width: 92%;
+  border-radius: 5px;
 }
 
 .dis-msg-none {
-        text-align: center;
-        font-weight: bold;
-        color: #abadb2;
-        position: relative;
-        top: 33%;
+  text-align: center;
+  font-weight: bold;
+  color: #abadb2;
+  position: relative;
+  top: 33%;
 }
 
 .dis-date {
-        text-align: right;
-        margin-right: 5px;
-        font-size: 10px;        
-        font-weight: bold;
-        color: #abadb2;
+  text-align: right;
+  margin-right: 5px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #abadb2;
 }
 
 .check-box {
-        display: inline-block;
-        font-size: 10px;
-        font-weight: bold;
-        color: #3d424b;
-        width: inherit;
+  display: inline-block;
+  font-size: 10px;
+  font-weight: bold;
+  color: #3d424b;
+  width: inherit;
 }
 
 #check-box-container {
-        float: right;
-        padding: 5px 10px 0 0;
+  float: right;
+  padding: 5px 10px 0 0;
 }
 
-.checkbox-name{
-        position: relative;
-        top: -3.5px;
+.checkbox-name {
+  position: relative;
+  top: -3.5px;
 }
 
 input {
-        margin-left: 8px;
+  margin-left: 8px;
 }
 
 .seoul-main {
-        padding: 30px;
-        padding-top: 20px;
-        padding-bottom: 0px;
-        font-size: 18px;
-        font-weight: bold;
-        line-height: 35px;
+  padding: 30px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 35px;
 }
 
 .seoul-main-city {
-        color: #4f89f3;
+  color: #4f89f3;
 }
 
 .seoul-main-accident {
-        color:#f34f70;
+  color: #f34f70;
 }
 
 .seoul-main-date {
-        font-size: 13px;
-        line-height: 10px;
-        color: #717376;
+  font-size: 13px;
+  line-height: 10px;
+  color: #717376;
 }
 
 #title-box {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 #accident-tap {
-        display: inline-block;
-        height: 10px;
+  display: inline-block;
+  height: 10px;
 }
 
 .tap-circle {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 15px;
-        margin-right: 2px;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 15px;
+  margin-right: 2px;
 }
 
 .tap-text {
-        display: inline;
-        font-size: 6px;
+  display: inline;
+  font-size: 6px;
 }
 
 .start {
-  opacity : 0
+  opacity: 0;
 }
 
 .end {
-  opacity : 1;
-  transition : opacity 1.2s;
+  opacity: 1;
+  transition: opacity 1.2s;
 }
