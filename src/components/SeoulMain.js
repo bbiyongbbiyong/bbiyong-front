@@ -4,14 +4,13 @@ import axios from 'axios';
 
 import '../css/message.css';
 import accidentType from '../data/accidentType.js';
+import { getMonth, getDay, getHours } from '../utils/dateUtil';
 
 export default function SeoulMain() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = `${today.getMonth() + 1}`.slice(-2);
-  const day = `${today.getDate()}`.slice(-2);
-  const hours =
-    today.getHours() >= 12 ? `오후 ${today.getHours() - 12}` : `오전 ${today.getHours()}`;
+  const year = new Date().getFullYear();
+  const month = getMonth();
+  const day = getDay();
+  const hours = getHours();
 
   // eslint-disable-next-line global-require
   const mapData = require('../data/mapData.json').data;
