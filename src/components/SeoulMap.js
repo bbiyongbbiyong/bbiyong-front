@@ -22,7 +22,7 @@ function SeoulMap() {
   const nameRef = useRef();
 
   useEffect(() => {
-    async function test() {
+    async function fillCitiesData() {
       const location = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/location');
       setCities(
         mapData.map((city) => {
@@ -33,7 +33,7 @@ function SeoulMap() {
         }),
       );
     }
-    test();
+    fillCitiesData();
   }, []);
 
   const selectCity = (e, ind) => {
