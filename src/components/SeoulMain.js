@@ -20,7 +20,7 @@ export default function SeoulMain() {
   const [Error, setError] = useState(null);
   const [fade, setFade] = useState('');
 
-  const getinfo = async () => {
+  const getInfo = async () => {
     try {
       setError(null);
       setAccident(null);
@@ -35,7 +35,7 @@ export default function SeoulMain() {
   };
 
   useEffect(() => {
-    getinfo();
+    getInfo();
     setTimeout(() => {
       setFade('end');
     }, 100);
