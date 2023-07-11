@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import SeoulMain from './SeoulMain.js';
+
 import MsgBox from './MsgBox.js';
+import SeoulMain from './SeoulMain.js';
 import '../css/message.css';
 
 export default function CheckBox() {
-  let state = useSelector((state) => {
+  const currentState = useSelector((state) => {
     return state;
   });
-  let clickCity = state.clickCity;
+  const { clickCity } = currentState;
 
-  const title = [
+  const titles = [
     { id: 0, name: '재난문자', path: 'emerMsg' },
     { id: 1, name: '지하철정보', path: 'metro' },
     { id: 2, name: '도로통제정보', path: 'accident' },
@@ -29,7 +30,7 @@ export default function CheckBox() {
   const handleAllCheck = (checked) => {
     if (checked) {
       const idArray = [];
-      title.forEach((el) => idArray.push(el.id));
+      titles.forEach((el) => idArray.push(el.id));
       setCheckItems(idArray);
     } else {
       setCheckItems([]);
@@ -48,28 +49,28 @@ export default function CheckBox() {
                 type="checkbox"
                 id="total"
                 onChange={(e) => handleAllCheck(e.target.checked)}
-                checked={checkItems.length === title.length ? true : false}
+                checked={checkItems.length === titles.length}
               />
-              <label for="total" className="checkbox-name">
+              <label htmlFor="total" className="checkbox-name">
                 전체
               </label>
 
-              {title?.map((title, key) => (
+              {titles.map((title, key) => (
                 <span key={key}>
                   <input
                     type="checkbox"
                     id={key}
                     onChange={(e) => handleSingleCheck(e.target.checked, title.id)}
-                    checked={checkItems.includes(title.id) ? true : false}
+                    checked={!!checkItems.includes(title.id)}
                   />
-                  <label for={key} className="checkbox-name">
+                  <label htmlFor={key} className="checkbox-name">
                     {title.name}
                   </label>
                 </span>
               ))}
             </div>
           </div>
-          <MsgBox check={checkItems} title={title} />
+          <MsgBox check={checkItems} title={titles} />
         </>
       )}
     </div>
