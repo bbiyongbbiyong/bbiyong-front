@@ -1,6 +1,9 @@
-import CheckBox from "./components/CheckBox"
-import SeoulMap from "./components/SeoulMap";
-import "./css/App.css"
+import React from 'react';
+
+import CheckBox from './components/CheckBox';
+import SeoulMap from './components/SeoulMap';
+
+import './css/App.css';
 
 function App() {
   return (
@@ -10,11 +13,9 @@ function App() {
         <span>삐용삐용</span>
       </h4>
       <SeoulMap />
-      <CheckBox /> 
+      <CheckBox />
     </div>
   );
 }
 
 export default App;
-
-
