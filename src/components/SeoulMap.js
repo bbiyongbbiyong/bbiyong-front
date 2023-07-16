@@ -1,14 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
+import notification from '../assets/notification.svg';
 import centerCoord from '../data/mapCoord';
 import { changeClickCity } from '../redux/citySlice';
 
 import '../css/SeoulMap.css';
 
 function SeoulMap() {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   // eslint-disable-next-line global-require
@@ -83,29 +87,44 @@ function SeoulMap() {
     return `translate(${centerCoord[ind][0]}, ${centerCoord[ind][1]})`;
   };
 
+  const onClickNotification = () => {
+    navigate('/notify');
+  };
+
   return (
     <>
       <div id="map-container">
         <svg width="300" height="250" viewBox="0 0 800 600">
-          <rect width={60} height={25} x={50} y={-10} stroke="black" fill="white" />{' '}
+          <rect width={60} height={25} x={50} y={-10} stroke="black" fill="white" />
           <text x={125} y={8}>
             0~3
           </text>
-          <rect width={60} height={25} x={50} y={25} stroke="black" fill="#FBF0EF" />{' '}
+          <rect width={60} height={25} x={50} y={25} stroke="black" fill="#FBF0EF" />
           <text x={125} y={43}>
             4~6
           </text>
-          <rect width={60} height={25} x={50} y={60} stroke="black" fill="#FDE0E1" />{' '}
+          <rect width={60} height={25} x={50} y={60} stroke="black" fill="#FDE0E1" />
           <text x={125} y={78}>
             7~9
           </text>
-          <rect width={60} height={25} x={50} y={95} stroke="black" fill="#F7A7A5" />{' '}
+          <rect width={60} height={25} x={50} y={95} stroke="black" fill="#F7A7A5" />
           <text x={125} y={113}>
             10~12
           </text>
-          <rect width={60} height={25} x={50} y={130} stroke="black" fill="#F58987" />{' '}
+          <rect width={60} height={25} x={50} y={130} stroke="black" fill="#F58987" />
           <text x={125} y={148}>
             13 이상
+          </text>
+          <image
+            href={notification}
+            height="80"
+            width="80"
+            x={700}
+            y={-40}
+            onClick={onClickNotification}
+          />
+          <text x={710} y={50} fill="#6F6F6F">
+            알림 설정
           </text>
           {cities.map((city, ind) => (
             <g key={ind} ref={cityRef}>
