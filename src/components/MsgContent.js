@@ -5,10 +5,7 @@ import axios from 'axios';
 import '../css/message.css';
 
 function MsgContent({ title, checkCount }) {
-  const currentState = useSelector((state) => {
-    return state;
-  });
-  const { clickCity } = currentState;
+  const currentCity = useSelector((state) => state.city);
 
   const [Msges, setMsges] = useState(null);
   const [, setLoading] = useState(false);
@@ -30,7 +27,7 @@ function MsgContent({ title, checkCount }) {
       const apiPath =
         title.path === 'metro'
           ? `https://api.bbiyong-bbiyong.seoul.kr//${title.path}/view`
-          : `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/${clickCity.cityID}`;
+          : `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/${currentCity.cityID}`;
       const response = await axios.get(apiPath);
 
       setMsges(response.data.data);
@@ -49,7 +46,7 @@ function MsgContent({ title, checkCount }) {
     return () => {
       setFade('');
     };
-  }, [clickCity, checkCount]);
+  }, [currentCity, checkCount]);
 
   const fillMsg = (target) => {
     if (title.path === 'emerMsg') return 'rgb(255, 155, 155)';
