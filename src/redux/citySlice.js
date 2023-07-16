@@ -1,8 +1,10 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+
+const cityInitialState = { index: null, cityName_KOR: '서울', cityName_ENG: 'seoul', cityID: 1 };
 
 const clickCity = createSlice({
   name: 'clickCity',
-  initialState: { index: null, cityName_KOR: '서울', cityName_ENG: 'seoul', cityID: 1 },
+  initialState: cityInitialState,
   reducers: {
     changeClickCity(state, action) {
       state.index = action.payload[0];
@@ -10,13 +12,9 @@ const clickCity = createSlice({
       state.cityName_ENG = action.payload[2];
       state.cityID = action.payload[3];
     },
+    clearCity: () => cityInitialState,
   },
 });
 
 export const { changeClickCity } = clickCity.actions;
-
-export default configureStore({
-  reducer: {
-    clickCity: clickCity.reducer,
-  },
-});
+export const citySliceReducer = clickCity.reducer;
