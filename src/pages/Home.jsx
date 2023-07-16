@@ -1,11 +1,11 @@
 import React from 'react';
 
-import CheckBox from './components/CheckBox';
-import SeoulMap from './components/SeoulMap';
+import CheckBox from '../components/CheckBox';
+import SeoulMap from '../components/SeoulMap';
 
-import './css/App.css';
+import '../css/Home.css';
 
-function App() {
+const Home = () => {
   return (
     <div>
       <h4 id="service-title">
@@ -16,6 +16,6 @@ function App() {
       <CheckBox />
     </div>
   );
-}
+};
 
-export default App;
+export default Home;
