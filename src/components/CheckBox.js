@@ -6,11 +6,7 @@ import SeoulMain from './SeoulMain.js';
 import '../css/message.css';
 
 export default function CheckBox() {
-  const currentState = useSelector((state) => {
-    return state;
-  });
-  const { clickCity } = currentState;
-
+  const currentCity = useSelector((state) => state.city);
   const titles = [
     { id: 0, name: '재난문자', path: 'emerMsg' },
     { id: 1, name: '지하철정보', path: 'metro' },
@@ -39,7 +35,7 @@ export default function CheckBox() {
 
   return (
     <div className="main-container">
-      {clickCity.cityID < 2 ? (
+      {currentCity.cityID < 2 ? (
         <SeoulMain />
       ) : (
         <>
