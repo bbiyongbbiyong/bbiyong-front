@@ -11,7 +11,9 @@ import { changeClickCity } from '../redux/citySlice';
 import '../css/SeoulMap.css';
 
 function SeoulMap() {
+  const currentMember = useSelector((state) => state.member);
   const currentCity = useSelector((state) => state.city);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -62,7 +64,11 @@ function SeoulMap() {
   };
 
   const onClickNotification = () => {
-    navigate('/notify');
+    if (currentMember.signed) {
+      navigate('/notify');
+    } else {
+      alert('로그인 모달');
+    }
   };
 
   useEffect(() => {
