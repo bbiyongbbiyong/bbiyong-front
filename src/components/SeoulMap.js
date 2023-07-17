@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -11,45 +11,22 @@ import { changeClickCity } from '../redux/citySlice';
 import '../css/SeoulMap.css';
 
 function SeoulMap() {
-  const navigate = useNavigate();
-
+  const currentCity = useSelector((state) => state.city);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   // eslint-disable-next-line global-require
   const mapData = require('../data/mapData.json').data;
   const [cities, setCities] = useState([]);
-
-  const [clickSeoul, setClickSeoul] = useState(true);
-  const [clickCityNum, setClickCityNum] = useState(null);
-
-  const cityRef = useRef();
-  const nameRef = useRef();
-
-  useEffect(() => {
-    async function fillCitiesData() {
-      const location = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/location');
-      setCities(
-        mapData.map((city) => {
-          return {
-            properties: city,
-            length: location.data.data[city.SIG_ID],
-          };
-        }),
-      );
-    }
-    fillCitiesData();
-  }, []);
+  const [currentCityIndex, setCurrentCityIndex] = useState(currentCity.index);
 
   const selectCity = (e, ind) => {
-    let text = '';
-    if (cityRef.current.id === e.target.id && !clickSeoul) {
-      setClickSeoul(true);
-      setClickCityNum(null);
+    if (currentCity.ind === e.target.id || ind === undefined) {
+      setCurrentCityIndex(null);
       dispatch(changeClickCity([null, '서울', 'seoul', 1]));
-      text = '서울은?';
     } else {
-      setClickSeoul(false);
-      setClickCityNum(ind);
+      setCurrentCityIndex(ind);
       dispatch(
         changeClickCity([
           ind,
@@ -58,10 +35,7 @@ function SeoulMap() {
           cities[ind].properties.SIG_ID,
         ]),
       );
-      cityRef.current = e.target;
-      text = `${cityRef.current.id}는?`;
     }
-    nameRef.current.innerHTML = `지금 ${text}`;
   };
 
   const fillCity = (target) => {
@@ -91,27 +65,42 @@ function SeoulMap() {
     navigate('/notify');
   };
 
+  useEffect(() => {
+    async function fillCitiesData() {
+      const location = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/location');
+      setCities(
+        mapData.map((city) => {
+          return {
+            properties: city,
+            length: location.data.data[city.SIG_ID],
+          };
+        }),
+      );
+    }
+    fillCitiesData();
+  }, []);
+
   return (
     <>
       <div id="map-container">
         <svg width="300" height="250" viewBox="0 0 800 600">
-          <rect width={60} height={25} x={50} y={-10} stroke="black" fill="white" />
+          <rect width={60} height={25} x={50} y={-10} stroke="black" fill="white" />{' '}
           <text x={125} y={8}>
             0~3
           </text>
-          <rect width={60} height={25} x={50} y={25} stroke="black" fill="#FBF0EF" />
+          <rect width={60} height={25} x={50} y={25} stroke="black" fill="#FBF0EF" />{' '}
           <text x={125} y={43}>
             4~6
           </text>
-          <rect width={60} height={25} x={50} y={60} stroke="black" fill="#FDE0E1" />
+          <rect width={60} height={25} x={50} y={60} stroke="black" fill="#FDE0E1" />{' '}
           <text x={125} y={78}>
             7~9
           </text>
-          <rect width={60} height={25} x={50} y={95} stroke="black" fill="#F7A7A5" />
+          <rect width={60} height={25} x={50} y={95} stroke="black" fill="#F7A7A5" />{' '}
           <text x={125} y={113}>
             10~12
           </text>
-          <rect width={60} height={25} x={50} y={130} stroke="black" fill="#F58987" />
+          <rect width={60} height={25} x={50} y={130} stroke="black" fill="#F58987" />{' '}
           <text x={125} y={148}>
             13 이상
           </text>
@@ -127,7 +116,7 @@ function SeoulMap() {
             알림 설정
           </text>
           {cities.map((city, ind) => (
-            <g key={ind} ref={cityRef}>
+            <g key={ind}>
               <path
                 key={ind}
                 id={city.properties.SIG_KOR_NM}
@@ -140,24 +129,27 @@ function SeoulMap() {
               </text>
             </g>
           ))}
-          {clickCityNum !== null && (
+          {cities.length !== 0 && currentCityIndex !== null && (
             <>
               <path
-                id={cities[clickCityNum].properties.SIG_KOR_NM}
-                d={cities[clickCityNum].properties.coord}
+                id={cities[currentCityIndex].properties.SIG_KOR_NM}
+                d={cities[currentCityIndex].properties.coord}
                 onClick={selectCity}
-                fill={fillCity(cities[clickCityNum])}
+                fill={fillCity(cities[currentCityIndex])}
                 className="selected"
               />
-              <text transform={nameCity(clickCityNum)} textAnchor="middle" className="name">
-                {cities[clickCityNum].properties.SIG_KOR_NM}
+              <text transform={nameCity(currentCityIndex)} textAnchor="middle" className="name">
+                {cities[currentCityIndex].properties.SIG_KOR_NM}
               </text>
             </>
           )}
         </svg>
       </div>
 
-      <h2 ref={nameRef}> 지금 서울은? </h2>
+      <h2>
+        지금 {currentCity.cityName_KOR}
+        {currentCity.cityName_KOR === '서울' ? '은' : '는'}?
+      </h2>
     </>
   );
 }
