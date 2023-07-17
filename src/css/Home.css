@@ -1,3 +1,8 @@
+#title-container {
+  display: flex;
+  justify-content: center;
+}
+
 #service-title {
   text-align: center;
   margin: 20 0;
@@ -5,4 +10,9 @@
 
 #service-title span {
   color: #9e4242;
+}
+
+#logo {
+  width: 30px;
+  margin-right: 2px;
 }
