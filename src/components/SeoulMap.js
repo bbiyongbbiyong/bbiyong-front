@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
-import notification from '../assets/notification.svg';
 import centerCoord from '../data/mapCoord';
 import { changeClickCity } from '../redux/citySlice';
 
 import '../css/SeoulMap.css';
 
 function SeoulMap() {
-  const currentMember = useSelector((state) => state.member);
   const currentCity = useSelector((state) => state.city);
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
   // eslint-disable-next-line global-require
   const mapData = require('../data/mapData.json').data;
   const [cities, setCities] = useState([]);
@@ -63,14 +57,6 @@ function SeoulMap() {
     return `translate(${centerCoord[ind][0]}, ${centerCoord[ind][1]})`;
   };
 
-  const onClickNotification = () => {
-    if (currentMember.signed) {
-      navigate('/notify');
-    } else {
-      alert('로그인 모달');
-    }
-  };
-
   useEffect(() => {
     async function fillCitiesData() {
       const location = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/location');
@@ -109,17 +95,6 @@ function SeoulMap() {
           <rect width={60} height={25} x={50} y={130} stroke="black" fill="#F58987" />{' '}
           <text x={125} y={148}>
             13 이상
-          </text>
-          <image
-            href={notification}
-            height="80"
-            width="80"
-            x={700}
-            y={-40}
-            onClick={onClickNotification}
-          />
-          <text x={710} y={50} fill="#6F6F6F">
-            알림 설정
           </text>
           {cities.map((city, ind) => (
             <g key={ind}>
