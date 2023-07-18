@@ -15,7 +15,7 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const [showSigninModal, setShowSigninModal] = useState(true);
+  const [showSigninModal, setShowSigninModal] = useState(false);
   const openSigninModal = () => setShowSigninModal(true);
   const closeSigninModal = () => setShowSigninModal(false);
 
