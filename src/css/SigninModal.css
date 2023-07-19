@@ -49,11 +49,7 @@
   flex-direction: column;
 }
 
-#signin-content input {
-  margin: 0px 0px 5px 0px;
-}
-
-#signin-content div {
+#signin-content #submit-button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
