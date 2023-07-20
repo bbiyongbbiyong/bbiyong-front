@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import logo from '../assets/serviceLogo.svg';
-
 import '../css/Signup.css';
 import TextInput from '../components/TextInput';
 
@@ -15,6 +17,8 @@ const Signup = () => {
   const [isPasswordMatched, setIsPasswordMatched] = useState(false);
 
   const isSignupValid = isIdValid && isPwValid && isPasswordMatched;
+
+  const navigate = useNavigate();
 
   const handleID = (e) => {
     setId(e.target.value);
@@ -31,9 +35,23 @@ const Signup = () => {
     setIsPasswordMatched(e.target.value === pw);
   };
 
+  const signup = async () => {
+    console.log(`${id} / ${pw}로 회원가입 시도`);
+    const signupData = {
+      id,
+      pw,
+    };
+    try {
+      await axios.post('api url', signupData);
+      navigate('/');
+    } catch (e) {
+      console.log(`회원가입 중 에러가 발생했습니다! 잠시 후 다시 시도해주세요. ${e}`);
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(`${id} / ${pw}로 회원가입 시도`);
+    signup();
   };
 
   return (
