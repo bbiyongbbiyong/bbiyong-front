@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import logo from '../assets/serviceLogo.svg';
 
 import '../css/Signup.css';
+import TextInput from '../components/TextInput';
 
 const Signup = () => {
   const [id, setId] = useState();
@@ -44,15 +45,30 @@ const Signup = () => {
 
       <form id="signup-input-container" onSubmit={onSubmit}>
         <h5> 아이디 </h5>
-        <input placeholder="id" onChange={handleID} pattern="[a-z\d]{6,12}" />
+        <TextInput
+          label="ID"
+          placeholder="6~12자리 영문, 숫자 사용"
+          pattern="[a-z\d]{6,12}"
+          onChange={handleID}
+        />
 
         <h5> 비밀번호 </h5>
-        <input placeholder="pw" type="password" onChange={handlePW} pattern="[a-z\d]{6,12}" />
+        <TextInput
+          label="PW"
+          placeholder="6~12자리 영문, 숫자 사용"
+          type="password"
+          pattern="[a-z\d]{6,12}"
+          onChange={handlePW}
+        />
 
         <h5> 비밀번호 확인 </h5>
         {confirmPw && !isPasswordMatched && <p> 비밀번호가 일치하지 않습니다</p>}
-        <input placeholder="pw" type="password" onChange={handleConfirmPW} />
-
+        <TextInput
+          label="PW"
+          placeholder="6~12자리 영문, 숫자 사용"
+          type="password"
+          onChange={handleConfirmPW}
+        />
         <div id="submit-button-container">
           <button disabled={!isSignupValid}> 확인 </button>
         </div>
