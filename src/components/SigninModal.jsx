@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import closeButton from '../assets/closeButton.svg';
 import TextInput from '../components/TextInput';
+import { setMember } from '../redux/memberReducer';
 
 import '../css/SigninModal.css';
 
 const SigninModal = ({ closeSigninModal }) => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onClickCloseButton = () => closeSigninModal();
 
@@ -19,9 +27,24 @@ const SigninModal = ({ closeSigninModal }) => {
     setPw(e.target.value);
   };
 
+  const signin = async () => {
+    const loginDispatch = (member) => dispatch(setMember(member));
+    const signinData = {
+      id,
+      pw,
+    };
+    try {
+      const response = await axios.post('api url', signinData);
+      loginDispatch(response.data);
+      navigate('/notification');
+    } catch (e) {
+      console.log(`로그인 중 에러가 발생했습니다! 잠시 후 다시 시도해주세요. ${e}`);
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(`${id} / ${pw}로 로그인 시도`);
+    signin();
   };
 
   return (
