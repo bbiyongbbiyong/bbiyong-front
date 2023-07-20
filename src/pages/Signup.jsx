@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import logo from '../assets/serviceLogo.svg';
-
 import '../css/Signup.css';
 import TextInput from '../components/TextInput';
 

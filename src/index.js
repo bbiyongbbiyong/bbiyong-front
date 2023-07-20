@@ -10,7 +10,6 @@ import storage from 'redux-persist/lib/storage';
 
 import App from './App.jsx';
 import { rootReducer } from './redux/reducer';
-
 import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 
