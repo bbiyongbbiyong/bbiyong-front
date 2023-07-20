@@ -64,10 +64,11 @@ const SigninModal = ({ closeSigninModal }) => {
 
         <div id="signin-content">
           <h4> Login </h4>
+          <p> 로그인이 필요한 서비스입니다. </p>
           <form onSubmit={onSubmit}>
             <TextInput label="ID" onChange={handleID} />
             <TextInput label="PW" onChange={handlePW} />
-            <div id="submit-button-container">
+            <div id="join-submit-button-container">
               <a href="/join"> 회원가입 </a>
               <button> 확인 </button>
             </div>

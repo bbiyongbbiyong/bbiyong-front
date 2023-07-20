@@ -44,12 +44,18 @@
   cursor: default;
 }
 
+#signin-content > p {
+  font-size: 12px;
+  margin: 0px 0px 10px 0px;
+  cursor: default;
+}
+
 #signin-content form {
   display: flex;
   flex-direction: column;
 }
 
-#signin-content #submit-button-container {
+#signin-content #join-submit-button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,7 +67,7 @@
   color: #6f6f6f;
 }
 
-#signin-content button {
+#join-submit-button-container button {
   font-size: 10px;
 
   border: none;
