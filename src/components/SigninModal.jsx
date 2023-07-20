@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import closeButton from '../assets/closeButton.svg';
+import TextInput from '../components/TextInput';
 
 import '../css/SigninModal.css';
 
@@ -41,10 +42,9 @@ const SigninModal = ({ closeSigninModal }) => {
         <div id="signin-content">
           <h4> Login </h4>
           <form onSubmit={onSubmit}>
-            <input placeholder="id" onChange={handleID} />
-            <input placeholder="pw" onChange={handlePW} />
-
-            <div>
+            <TextInput label="ID" onChange={handleID} />
+            <TextInput label="PW" onChange={handlePW} />
+            <div id="submit-button-container">
               <a href="/join"> 회원가입 </a>
               <button> 확인 </button>
             </div>

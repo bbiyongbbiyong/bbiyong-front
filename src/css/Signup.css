@@ -3,7 +3,6 @@
 
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 #signup-text p {
@@ -16,12 +15,7 @@
 }
 
 #signup-input-container h5 {
-  margin: 0px 0px;
-}
-
-#signup-input-container input {
-  margin: 5px 0px 20px 0px;
-  width: 96.5%;
+  margin: 0px 0px 5px 0px;
 }
 
 #submit-button-container {
