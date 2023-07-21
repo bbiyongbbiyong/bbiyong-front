@@ -41,3 +41,12 @@
 .toggleButton {
   transition: all 0.1s ease-in;
 }
+
+#option-container {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 4px;
+  column-gap: 4px;
+  margin-bottom: 20px;
+}
