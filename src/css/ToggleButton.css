@@ -9,7 +9,7 @@
 
 .toggleSwitch {
   width: 50px;
-  height: 25px;
+  height: 22px;
   display: block;
   position: relative;
   border-radius: 15px;
@@ -18,8 +18,8 @@
 }
 
 .toggleSwitch .toggleButton {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   position: absolute;
   top: 50%;
   left: 3px;
@@ -33,7 +33,7 @@
 }
 
 #toggle-container > input[type='checkbox']:checked ~ .toggleSwitch .toggleButton {
-  left: calc(100% - 23px);
+  left: calc(100% - 20px);
   background: #fff;
 }
 
