@@ -1,0 +1,43 @@
+#toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+#toggle-container p {
+  margin-right: 8px;
+}
+
+.toggleSwitch {
+  width: 50px;
+  height: 25px;
+  display: block;
+  position: relative;
+  border-radius: 15px;
+  background-color: #d9d9d9;
+  cursor: pointer;
+}
+
+.toggleSwitch .toggleButton {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #fff;
+}
+
+#toggle-container > input[type='checkbox']:checked ~ .toggleSwitch {
+  background: #f7a8a4;
+}
+
+#toggle-container > input[type='checkbox']:checked ~ .toggleSwitch .toggleButton {
+  left: calc(100% - 23px);
+  background: #fff;
+}
+
+.toggleSwitch,
+.toggleButton {
+  transition: all 0.1s ease-in;
+}
