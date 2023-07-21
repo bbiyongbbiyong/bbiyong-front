@@ -1,3 +1,23 @@
+#notification-page-container {
+  width: fit-content;
+  position: relative;
+}
+
+#onoff-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 60px;
+}
+
+#setting-submit-container {
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: end;
+}
+
 #setting-submit-button {
   width: 63px;
   height: 24px;
@@ -6,4 +26,5 @@
   border-radius: 5px;
 
   background-color: #6cb0ff;
+  color: #fff;
 }

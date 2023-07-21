@@ -92,24 +92,22 @@ const Notification = () => {
   };
 
   return (
-    <>
-      <div>
+    <div id="notification-page-container">
+      <div id="onoff-box">
         <img src={notification} width="30" />
-        <div id="toggle-container">
-          <p> 알림설정 </p>
-          <input
-            type="checkbox"
-            onChange={(e) => {
-              handleAllToggleStatus(e.target.checked);
-            }}
-            id="알림설정"
-            checked={notifyOn}
-            hidden
-          />
-          <label htmlFor="알림설정" className="toggleSwitch">
-            <span className="toggleButton"></span>
-          </label>
-        </div>
+        <p> 알림설정 </p>
+        <input
+          type="checkbox"
+          onChange={(e) => {
+            handleAllToggleStatus(e.target.checked);
+          }}
+          id="알림설정"
+          checked={notifyOn}
+          hidden
+        />
+        <label htmlFor="알림설정" className="toggleSwitch">
+          <span className="toggleButton"></span>
+        </label>
       </div>
 
       {notifyOn ? (
@@ -126,10 +124,12 @@ const Notification = () => {
         <div> 현재 수신 받는 알림이 없습니다</div>
       )}
 
-      <button id="setting-submit-button" onClick={onClickSave}>
-        저장
-      </button>
-    </>
+      <div id="setting-submit-container">
+        <button id="setting-submit-button" onClick={onClickSave}>
+          저장
+        </button>
+      </div>
+    </div>
   );
 };
 
