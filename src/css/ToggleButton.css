@@ -5,6 +5,8 @@
 
 #toggle-container p {
   margin-right: 8px;
+
+  cursor: default;
 }
 
 .toggleSwitch {

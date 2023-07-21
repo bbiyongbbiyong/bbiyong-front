@@ -11,6 +11,10 @@
   padding: 0px 60px;
 }
 
+#onoff-box p {
+  cursor: default;
+}
+
 #setting-submit-container {
   margin-top: 30px;
 
