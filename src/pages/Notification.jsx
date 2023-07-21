@@ -110,19 +110,21 @@ const Notification = () => {
         </label>
       </div>
 
-      {notifyOn ? (
-        MIDDLE_CATEGORY.map((category, index) => (
-          <ToggleButton
-            key={index}
-            label={category}
-            onChange={handleToggleStatus}
-            index={index}
-            options={SUB_CATEGORY[index]}
-          />
-        ))
-      ) : (
-        <div> 현재 수신 받는 알림이 없습니다</div>
-      )}
+      <div id="notification-content-box">
+        {notifyOn ? (
+          MIDDLE_CATEGORY.map((category, index) => (
+            <ToggleButton
+              key={index}
+              label={category}
+              onChange={handleToggleStatus}
+              index={index}
+              options={SUB_CATEGORY[index]}
+            />
+          ))
+        ) : (
+          <div id="notify-none"> 현재 수신 받는 알림이 없습니다</div>
+        )}
+      </div>
 
       <div id="setting-submit-container">
         <button id="setting-submit-button" onClick={onClickSave}>
