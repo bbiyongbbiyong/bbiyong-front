@@ -126,7 +126,9 @@ const Notification = () => {
         <div> 현재 수신 받는 알림이 없습니다</div>
       )}
 
-      <button onClick={onClickSave}> 저장 </button>
+      <button id="setting-submit-button" onClick={onClickSave}>
+        저장
+      </button>
     </>
   );
 };
