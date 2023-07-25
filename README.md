@@ -9,7 +9,7 @@
 | <img src="https://avatars.githubusercontent.com/u/87255462?v=4" width="150"/> | <img src="https://avatars.githubusercontent.com/u/85922192?v=4" width="150"/> | <img src="https://avatars.githubusercontent.com/u/93638922?v=4" width="150"/> 
 | Front-End | Front-End| Front-End |
 
-## 기술 스택
+## 🛠 기술 스택
 `JavaScript` `React` `React-router-dom` `axios` `redux` `redux-persist`
 
 ## 📁 폴더 구조 
