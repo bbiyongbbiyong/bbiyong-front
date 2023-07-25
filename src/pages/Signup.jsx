@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
@@ -8,6 +9,8 @@ import '../css/Signup.css';
 import TextInput from '../components/TextInput';
 
 const Signup = () => {
+  const currentMember = useSelector((state) => state.member);
+
   const [id, setId] = useState();
   const [pw, setPw] = useState();
   const [confirmPw, setConfirmPw] = useState();
@@ -53,6 +56,13 @@ const Signup = () => {
     e.preventDefault();
     signup();
   };
+
+  useEffect(() => {
+    if (currentMember.signed) {
+      alert('이미 로그인 한 사용자입니다.');
+      navigate(-1);
+    }
+  }, []);
 
   return (
     <div id="signup-container">
