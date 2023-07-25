@@ -31,7 +31,7 @@ const Home = () => {
     <>
       {showSigninModal && <SigninModal closeSigninModal={closeSigninModal} />}
 
-      <div>
+      <div id="home-container">
         <div id="title-container">
           <img src={logo} id="logo" />
           <h4 id="service-title">

@@ -1,13 +1,21 @@
 #signup-container {
-  width: fit-content;
+  margin-top: 50px;
 
   display: flex;
   flex-direction: column;
+
+  position: relative;
+  height: calc(100% - 50px);
+}
+
+#signup-text h1 {
+  margin: 0px;
 }
 
 #signup-text p {
   color: #c2c2c2;
   font-size: 12px;
+  margin-bottom: 30px;
 }
 
 #signup-input-container {
@@ -15,11 +23,10 @@
 }
 
 #signup-input-container h5 {
-  margin: 0px 0px 5px 0px;
+  margin: 30px 0px 5px 0px;
 }
 
 #submit-button-container {
-  width: 100%;
   display: flex;
   justify-content: end;
 }
@@ -44,6 +51,9 @@
   width: 100%;
   display: flex;
   justify-content: center;
+
+  position: absolute;
+  bottom: 40px;
 }
 
 #logo-container img {

@@ -94,7 +94,7 @@ const Notification = () => {
   return (
     <div id="notification-page-container">
       <div id="onoff-box">
-        <img src={notification} width="30" />
+        <img src={notification} width="40" />
         <p> 알림설정 </p>
         <input
           type="checkbox"
