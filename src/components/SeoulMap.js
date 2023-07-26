@@ -59,7 +59,7 @@ function SeoulMap() {
 
   useEffect(() => {
     async function fillCitiesData() {
-      const location = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/location');
+      const location = await axios.get('http://3.36.220.252:8080/location');
       setCities(
         mapData.map((city) => {
           return {
