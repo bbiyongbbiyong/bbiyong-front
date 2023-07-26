@@ -26,6 +26,9 @@ h3 {
   width: 350px;
   border-radius: 10px;
   padding-bottom: 15px;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .messages {
@@ -38,8 +41,7 @@ h3 {
 }
 
 .msg-box {
-  margin-left: auto;
-  margin-right: auto;
+  height: 120px;
   margin-bottom: 10px;
   background: white;
   border-radius: 10px;
@@ -63,14 +65,18 @@ h3 {
 .msg-container {
   margin-left: 10px;
   margin-right: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .check-none {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-grow: 1;
   font-weight: bold;
   color: #6f7072;
-  position: relative;
-  top: 40%;
 }
 
 .dis-msg {
