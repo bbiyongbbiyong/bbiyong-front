@@ -1,0 +1,61 @@
+#notification-page-container {
+  height: 100%;
+
+  position: relative;
+}
+
+#onoff-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0px 50px;
+}
+
+#onoff-box p {
+  cursor: default;
+  font-size: 20px;
+}
+
+#onoff-box > input[type='checkbox']:checked ~ .toggleSwitch {
+  background: #f7a8a4;
+}
+
+#onoff-box > input[type='checkbox']:checked ~ .toggleSwitch .toggleButton {
+  left: calc(100% - 20px);
+  background: #fff;
+}
+
+#notification-content-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+#setting-submit-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+#setting-submit-button {
+  width: 63px;
+  height: 24px;
+
+  border: none;
+  border-radius: 5px;
+
+  background-color: #6cb0ff;
+  color: #fff;
+
+  cursor: pointer;
+}
+
+#notify-none {
+  color: #737373;
+  font-size: 16px;
+  font-weight: 700;
+}
