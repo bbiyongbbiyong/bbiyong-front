@@ -1,17 +1,19 @@
 import React from 'react';
 
+import { getSubOptionName } from '../utils/categoryUtil';
+
 import '../css/OptionButton.css';
 
-const OptionButton = ({ option, onChange, index, checked }) => {
+const OptionButton = ({ label, onChange, checked }) => {
   const onChangeOption = (e) => {
-    onChange(e.target.checked, index);
+    onChange(e.target.checked, label);
   };
 
   return (
     <div id="sub-category-container">
-      <input type="checkbox" onChange={onChangeOption} id={option} checked={checked} hidden />
-      <label htmlFor={option} id="sub-category-label">
-        <span> {option} </span>
+      <input type="checkbox" onChange={onChangeOption} id={label} checked={checked} hidden />
+      <label htmlFor={label} id="sub-category-label">
+        <span> {getSubOptionName(label)} </span>
       </label>
     </div>
   );
