@@ -14,6 +14,7 @@ const Signup = () => {
   const [id, setId] = useState();
   const [pw, setPw] = useState();
   const [confirmPw, setConfirmPw] = useState();
+  const [error, setError] = useState(null);
 
   const [isIdValid, setIsIdValid] = useState(false);
   const [isPwValid, setIsPwValid] = useState(false);
@@ -48,7 +49,9 @@ const Signup = () => {
       await axios.post('api url', signupData);
       navigate('/');
     } catch (e) {
-      console.log(`회원가입 중 에러가 발생했습니다! 잠시 후 다시 시도해주세요. ${e}`);
+      if (e.response.status === 404) {
+        setError('이미 사용 중인 아이디입니다');
+      }
     }
   };
 
@@ -79,6 +82,12 @@ const Signup = () => {
           pattern="[a-z\d]{6,12}"
           onChange={handleID}
         />
+        {id && !isIdValid && (
+          <p className="signup-error-message">
+            규칙에 맞는 아이디를 입력해주세요. (6~12자리 영문, 숫자 사용)
+          </p>
+        )}
+        {error && <p className="signup-error-message"> {error} </p>}
 
         <h5> 비밀번호 </h5>
         <TextInput
@@ -88,15 +97,23 @@ const Signup = () => {
           pattern="[a-z\d]{6,12}"
           onChange={handlePW}
         />
+        {pw && !isPwValid && (
+          <p className="signup-error-message">
+            규칙에 맞는 비밀번호를 입력해주세요. (6~12자리 영문, 숫자 사용)
+          </p>
+        )}
 
         <h5> 비밀번호 확인 </h5>
-        {confirmPw && !isPasswordMatched && <p> 비밀번호가 일치하지 않습니다</p>}
         <TextInput
           label="PW"
           placeholder="6~12자리 영문, 숫자 사용"
           type="password"
           onChange={handleConfirmPW}
         />
+        {confirmPw && !isPasswordMatched && (
+          <p className="signup-error-message"> 비밀번호가 일치하지 않습니다</p>
+        )}
+
         <div id="submit-button-container">
           <button disabled={!isSignupValid}> 확인 </button>
         </div>
