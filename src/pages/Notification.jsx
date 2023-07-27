@@ -78,16 +78,12 @@ const Notification = () => {
     }
   };
 
-  const reverseToggleStatus = (index) => {
+  const handleToggleStatus = (index) => {
     setToggleStatus(
       toggleStatus.map((toggleChecked, toggleIndex) => {
         return index === toggleIndex ? !toggleChecked : toggleChecked;
       }),
     );
-  };
-
-  const handleToggleStatus = (index) => {
-    reverseToggleStatus(index);
   };
 
   const updateNotificationStatus = (middleCategory, subOptionStatus) => {
