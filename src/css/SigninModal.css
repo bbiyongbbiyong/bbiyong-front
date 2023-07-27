@@ -46,10 +46,18 @@
   cursor: default;
 }
 
-#signin-content > p {
+#signin-message {
   font-size: 12px;
-  margin: 0px 0px 10px 0px;
+  margin: 0px 0px 5px 0px;
   cursor: default;
+}
+
+#signin-error-message {
+  font-size: 10px;
+  font-weight: 600;
+  cursor: default;
+
+  color: #ff0000;
 }
 
 #signin-content form {
