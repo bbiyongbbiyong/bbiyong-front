@@ -1,0 +1,24 @@
+#sub-category-container {
+  width: fit-content;
+}
+
+#sub-category-label {
+  width: 89px;
+
+  display: inline-block;
+
+  border-radius: 10px;
+  text-align: center;
+
+  background: #d9d9d9;
+
+  cursor: pointer;
+}
+
+#sub-category-label span {
+  font-size: 13px;
+}
+
+#sub-category-container > input[type='checkbox']:checked ~ #sub-category-label {
+  background: #f7a8a4;
+}
