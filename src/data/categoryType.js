@@ -5,7 +5,7 @@ const MIDDLE_CATEGORY = {
   roadControlInformation: '도로통제정보',
 };
 
-const SUB_CATEGORY = {
+const SUB_OPTIONS = {
   typhoon: '태풍',
   fineDust: '미세먼지',
   dry: '건조',
@@ -57,4 +57,4 @@ const SUB_CATEGORY = {
   roadEtc: '기타 도로통제',
 };
 
-export { MIDDLE_CATEGORY, SUB_CATEGORY };
+export { MIDDLE_CATEGORY, SUB_OPTIONS };
