@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ import '../css/SigninModal.css';
 const SigninModal = ({ closeSigninModal }) => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+  const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -38,7 +39,9 @@ const SigninModal = ({ closeSigninModal }) => {
       loginDispatch(response.data);
       navigate('/notification');
     } catch (e) {
-      console.log(`로그인 중 에러가 발생했습니다! 잠시 후 다시 시도해주세요. ${e}`);
+      if (e.response.status === 422) {
+        setError('에러 메시지');
+      }
     }
   };
 
@@ -64,9 +67,11 @@ const SigninModal = ({ closeSigninModal }) => {
 
         <div id="signin-content">
           <h4> Login </h4>
-          <p> 로그인이 필요한 서비스입니다. </p>
+          <p id="signin-message"> 로그인이 필요한 서비스입니다. </p>
+          {error && <p id="signin-error-message"> ID 또는 PW를 잘못 입력했음 </p>}
           <form onSubmit={onSubmit}>
             <TextInput label="ID" onChange={handleID} />
+
             <TextInput label="PW" onChange={handlePW} />
             <div id="join-submit-button-container">
               <a href="/join"> 회원가입 </a>
