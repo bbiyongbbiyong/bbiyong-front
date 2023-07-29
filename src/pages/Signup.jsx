@@ -40,17 +40,16 @@ const Signup = () => {
   };
 
   const signup = async () => {
-    console.log(`${accountId} / ${password}로 회원가입 시도`);
     const signupData = {
       accountId,
       password,
     };
     try {
-      await axios.post('api url', signupData);
+      await axios.post('https://api.bbiyong-bbiyong.seoul.kr/join', signupData);
       navigate('/');
     } catch (e) {
-      if (e.response.status === 404) {
-        setError('이미 사용 중인 아이디입니다');
+      if (e.response.status === 409) {
+        setError(e.response.data.message);
       }
     }
   };
