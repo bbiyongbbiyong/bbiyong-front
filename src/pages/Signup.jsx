@@ -12,8 +12,8 @@ const Signup = () => {
   const currentMember = useSelector((state) => state.member);
 
   const [id, setId] = useState();
-  const [pw, setPw] = useState();
-  const [confirmPw, setConfirmPw] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
   const [error, setError] = useState(null);
 
   const [isIdValid, setIsIdValid] = useState(false);
@@ -30,20 +30,20 @@ const Signup = () => {
   };
 
   const handlePW = (e) => {
-    setPw(e.target.value);
+    setPassword(e.target.value);
     setIsPwValid(!e.target.validity.patternMismatch);
   };
 
   const handleConfirmPW = (e) => {
-    setConfirmPw(e.target.value);
-    setIsPasswordMatched(e.target.value === pw);
+    setConfirmPassword(e.target.value);
+    setIsPasswordMatched(e.target.value === password);
   };
 
   const signup = async () => {
-    console.log(`${id} / ${pw}로 회원가입 시도`);
+    console.log(`${id} / ${password}로 회원가입 시도`);
     const signupData = {
       id,
-      pw,
+      password,
     };
     try {
       await axios.post('api url', signupData);
@@ -97,7 +97,7 @@ const Signup = () => {
           pattern="[a-z\d]{6,12}"
           onChange={handlePW}
         />
-        {pw && !isPwValid && (
+        {password && !isPwValid && (
           <p className="signup-error-message">
             규칙에 맞는 비밀번호를 입력해주세요. (6~12자리 영문, 숫자 사용)
           </p>
@@ -110,7 +110,7 @@ const Signup = () => {
           type="password"
           onChange={handleConfirmPW}
         />
-        {confirmPw && !isPasswordMatched && (
+        {confirmPassword && !isPasswordMatched && (
           <p className="signup-error-message"> 비밀번호가 일치하지 않습니다</p>
         )}
 
