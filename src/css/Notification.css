@@ -2,6 +2,7 @@
   height: 100%;
 
   position: relative;
+  width: 275px;
 }
 
 #onoff-box {
@@ -27,6 +28,8 @@
 }
 
 #notification-content-box {
+  height: 700px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
