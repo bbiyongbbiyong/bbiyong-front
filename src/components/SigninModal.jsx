@@ -7,6 +7,7 @@ import axios from 'axios';
 import closeButton from '../assets/closeButton.svg';
 import TextInput from '../components/TextInput';
 import { setMember } from '../redux/memberReducer';
+import { setToken } from '../utils/tokenUtil';
 
 import '../css/SigninModal.css';
 
@@ -35,12 +36,16 @@ const SigninModal = ({ closeSigninModal }) => {
       password,
     };
     try {
-      const response = await axios.post('api url', signinData);
-      loginDispatch(response.data);
+      const response = await axios.post('https://api.bbiyong-bbiyong.seoul.kr/login', signinData);
+      setToken(response.data);
+      loginDispatch(signinData);
       navigate('/notification');
     } catch (e) {
       if (e.response.status === 422) {
-        setError('에러 메시지');
+        // 상태코드 수정 예정
+        setError(e.response.data.message);
+      } else {
+        alert('로그인 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요');
       }
     }
   };
@@ -68,7 +73,7 @@ const SigninModal = ({ closeSigninModal }) => {
         <div id="signin-content">
           <h4> Login </h4>
           <p id="signin-message"> 로그인이 필요한 서비스입니다. </p>
-          {error && <p id="signin-error-message"> ID 또는 PW를 잘못 입력했음 </p>}
+          {error && <p id="signin-error-message"> {error} </p>}
           <form onSubmit={onSubmit}>
             <TextInput label="ID" onChange={handleID} />
 
