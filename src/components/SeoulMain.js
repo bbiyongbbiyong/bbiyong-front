@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import axios from 'axios';
-
 import '../css/message.css';
 import { getMonth, getDay, getHours } from '../utils/dateUtil';
 
@@ -14,8 +12,6 @@ export default function SeoulMain() {
   const hours = getHours();
 
   // eslint-disable-next-line global-require
-
-  const [Accident, setAccident] = useState(null);
   const [, setLoading] = useState(false);
   const [Error, setError] = useState(null);
   const [fade, setFade] = useState('');
@@ -23,10 +19,7 @@ export default function SeoulMain() {
   const getInfo = async () => {
     try {
       setError(null);
-      setAccident(null);
       setLoading(true);
-      const response = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/accident/most');
-      setAccident(response.data);
     } catch (e) {
       console.log('사고 유형 불러오기 실패');
       setError(e);
@@ -45,7 +38,6 @@ export default function SeoulMain() {
   }, []);
 
   if (Error) return <div>Error</div>;
-  if (!Accident) return null;
 
   return (
     <div className={`seoul-main start ${fade}`}>
