@@ -5,6 +5,8 @@ import axios from 'axios';
 
 export default function Chart() {
   const [analytics, setAnalytics] = useState([]);
+  const [maxValue, setMaxValue] = useState(100);
+
   const chartData = [
     {
       name: '어제',
@@ -65,7 +67,7 @@ export default function Chart() {
           offsetX: -10,
         },
         min: 0,
-        max: 100,
+        max: maxValue > 100 ? Math.ceil(maxValue / 10) * 10 : 100,
       },
     },
   };
@@ -73,6 +75,7 @@ export default function Chart() {
     try {
       const response = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/analytics');
       setAnalytics(response.data.data);
+      setMaxValue(Math.max(...Object.values(response.data.data)));
     } catch (e) {
       console.log('사고 유형 불러오기 실패');
     }
