@@ -64,7 +64,7 @@ export default function Chart() {
             fontWeight: 'bold',
             fontSize: '14px',
           },
-          offsetX: -10,
+          offsetX: -25,
         },
         min: 0,
         max: maxValue > 100 ? Math.ceil(maxValue / 10) * 10 : 100,
@@ -86,12 +86,15 @@ export default function Chart() {
   }, []);
 
   return (
-    <ReactApexChart
-      options={chartSetting.options}
-      series={chartData}
-      type="bar"
-      height={250}
-      width={325}
-    />
+    <div id="chart-box">
+      <ReactApexChart
+        id="chart"
+        options={chartSetting.options}
+        series={chartData}
+        type="bar"
+        height={250}
+        width={325}
+      />
+    </div>
   );
 }
