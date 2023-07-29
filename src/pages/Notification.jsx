@@ -1,11 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+
+import { getMessaging, getToken } from 'firebase/messaging';
 
 import notification from '../assets/notification.svg';
 import ToggleButton from '../components/ToggleButton';
+import { firebaseVapidKey } from '../data/firebaseConfig';
 
 import '../css/Notification.css';
 
 const Notification = () => {
+  const messaging = getMessaging();
+  getToken(messaging, {
+    vapidKey: firebaseVapidKey,
+  })
+    .then((currentToken) => {
+      if (currentToken) {
+        console.log(currentToken);
+        // TODO: 서버에 토큰 전송
+      } else {
+        console.log('FCM 토큰이 없습니다.');
+      }
+    })
+    .catch((error) => {
+      console.log('FCM 토큰 가져오기 오류 : ', error);
+    });
   const MIDDLE_CATEGORY = ['자연재난', '사회재난', '지하철정보', '도로통제정보'];
   const SUB_CATEGORY = [
     [
