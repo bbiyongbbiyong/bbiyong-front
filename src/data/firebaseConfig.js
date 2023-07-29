@@ -1,14 +1,14 @@
 const firebaseConfig = {
-  apiKey: 'AIzaSyAsgj_iDkXgoipFY9AUbuYNKQ1O7BiLcho',
-  authDomain: 'react-push-test-58035.firebaseapp.com',
-  projectId: 'react-push-test-58035',
-  storageBucket: 'react-push-test-58035.appspot.com',
-  messagingSenderId: '644484203614',
-  appId: '1:644484203614:web:04b2927d12fdf1e592a0cf',
-  measurementId: 'G-KLHNKZPZ4K',
+  apiKey: 'AIzaSyBliXE0L5Ev_e1NVMc4oHHEOBgp75-skVw',
+  authDomain: 'bbiyong-bbiyong.firebaseapp.com',
+  projectId: 'bbiyong-bbiyong',
+  storageBucket: 'bbiyong-bbiyong.appspot.com',
+  messagingSenderId: '944206714058',
+  appId: '1:944206714058:web:b19c3cc593f6c1cda65033',
+  measurementId: 'G-1VNS1TY38X',
 };
 
 const firebaseVapidKey =
-  'BI-_sWLOnaahPCqAvw8zFydQz1yR24QkOp817njCh_VWqLCGjdSbr3MtvjvHqbrz8D1cBXKdB8rab5O3hDoTTmk';
+  'BNYCgj0oUS7RlPkawMTqMDh8vJORK0OJUEPvwwjN3cQg9cRq6qYymDzpsYFOW0BM-UY1wqvQoQm8Ed7nvPJhoL0';
 
 export { firebaseConfig, firebaseVapidKey };
