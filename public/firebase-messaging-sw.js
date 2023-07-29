@@ -16,10 +16,36 @@ const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
   const notificationTitle = '삐용삐용 테스트';
   const notificationOptions = {
-    // TODO: 서버 알림 수신 내용 띄우기
     body: payload.data.body,
     icon: '',
+    badge: '',
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  // TODO: 배포 후 url 기입
+  const targetUrl = '';
+  event.waitUntil(
+    self.clients.matchAll().then((clients) => {
+      let existingTab = null;
+
+      for (const client of clients) {
+        if (client.url === targetUrl) {
+          existingTab = client;
+          break;
+        }
+      }
+
+      if (existingTab && 'focus' in existingTab) {
+        return existingTab.focus();
+      } else {
+        if (self.clients.openWindow) {
+          return self.clients.openWindow(targetUrl);
+        }
+      }
+    }),
+  );
 });
