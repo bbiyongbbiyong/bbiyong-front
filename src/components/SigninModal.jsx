@@ -11,7 +11,7 @@ import { setMember } from '../redux/memberReducer';
 import '../css/SigninModal.css';
 
 const SigninModal = ({ closeSigninModal }) => {
-  const [id, setId] = useState('');
+  const [accountId, setAccountId] = useState('');
   const [pw, setPw] = useState('');
   const [error, setError] = useState(null);
 
@@ -21,7 +21,7 @@ const SigninModal = ({ closeSigninModal }) => {
   const onClickCloseButton = () => closeSigninModal();
 
   const handleID = (e) => {
-    setId(e.target.value);
+    setAccountId(e.target.value);
   };
 
   const handlePW = (e) => {
@@ -31,7 +31,7 @@ const SigninModal = ({ closeSigninModal }) => {
   const signin = async () => {
     const loginDispatch = (member) => dispatch(setMember(member));
     const signinData = {
-      id,
+      accountId,
       pw,
     };
     try {
