@@ -12,7 +12,7 @@ import '../css/SigninModal.css';
 
 const SigninModal = ({ closeSigninModal }) => {
   const [accountId, setAccountId] = useState('');
-  const [pw, setPw] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
@@ -25,14 +25,14 @@ const SigninModal = ({ closeSigninModal }) => {
   };
 
   const handlePW = (e) => {
-    setPw(e.target.value);
+    setPassword(e.target.value);
   };
 
   const signin = async () => {
     const loginDispatch = (member) => dispatch(setMember(member));
     const signinData = {
       accountId,
-      pw,
+      password,
     };
     try {
       const response = await axios.post('api url', signinData);
