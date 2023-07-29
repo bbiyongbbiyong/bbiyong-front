@@ -37,10 +37,10 @@ export default function Chart() {
       },
       dataLabels: {
         enabled: true,
-        offsetX: -6,
+        offsetX: 17.5,
         style: {
           fontSize: '12px',
-          colors: ['#fff'],
+          colors: ['#000'],
         },
       },
       stroke: {
