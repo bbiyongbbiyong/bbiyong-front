@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import logo from '../assets/serviceLogo.svg';
 import '../css/Signup.css';
 import TextInput from '../components/TextInput';
 
 const Signup = () => {
-  const [id, setId] = useState();
-  const [pw, setPw] = useState();
-  const [confirmPw, setConfirmPw] = useState();
+  const currentMember = useSelector((state) => state.member);
+
+  const [accountId, setAccountId] = useState();
+  const [password, setPassword] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [error, setError] = useState(null);
 
   const [isIdValid, setIsIdValid] = useState(false);
   const [isPwValid, setIsPwValid] = useState(false);
@@ -15,25 +22,49 @@ const Signup = () => {
 
   const isSignupValid = isIdValid && isPwValid && isPasswordMatched;
 
+  const navigate = useNavigate();
+
   const handleID = (e) => {
-    setId(e.target.value);
+    setAccountId(e.target.value);
     setIsIdValid(!e.target.validity.patternMismatch);
   };
 
   const handlePW = (e) => {
-    setPw(e.target.value);
+    setPassword(e.target.value);
     setIsPwValid(!e.target.validity.patternMismatch);
   };
 
   const handleConfirmPW = (e) => {
-    setConfirmPw(e.target.value);
-    setIsPasswordMatched(e.target.value === pw);
+    setConfirmPassword(e.target.value);
+    setIsPasswordMatched(e.target.value === password);
+  };
+
+  const signup = async () => {
+    const signupData = {
+      accountId,
+      password,
+    };
+    try {
+      await axios.post('https://api.bbiyong-bbiyong.seoul.kr/join', signupData);
+      navigate('/');
+    } catch (e) {
+      if (e.response.status === 409) {
+        setError(e.response.data.message);
+      }
+    }
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(`${id} / ${pw}로 회원가입 시도`);
+    signup();
   };
+
+  useEffect(() => {
+    if (currentMember.signed) {
+      alert('이미 로그인 한 사용자입니다.');
+      navigate(-1);
+    }
+  }, []);
 
   return (
     <div id="signup-container">
@@ -50,6 +81,12 @@ const Signup = () => {
           pattern="[a-z\d]{6,12}"
           onChange={handleID}
         />
+        {accountId && !isIdValid && (
+          <p className="signup-error-message">
+            규칙에 맞는 아이디를 입력해주세요. (6~12자리 영문, 숫자 사용)
+          </p>
+        )}
+        {error && <p className="signup-error-message"> {error} </p>}
 
         <h5> 비밀번호 </h5>
         <TextInput
@@ -59,15 +96,23 @@ const Signup = () => {
           pattern="[a-z\d]{6,12}"
           onChange={handlePW}
         />
+        {password && !isPwValid && (
+          <p className="signup-error-message">
+            규칙에 맞는 비밀번호를 입력해주세요. (6~12자리 영문, 숫자 사용)
+          </p>
+        )}
 
         <h5> 비밀번호 확인 </h5>
-        {confirmPw && !isPasswordMatched && <p> 비밀번호가 일치하지 않습니다</p>}
         <TextInput
           label="PW"
           placeholder="6~12자리 영문, 숫자 사용"
           type="password"
           onChange={handleConfirmPW}
         />
+        {confirmPassword && !isPasswordMatched && (
+          <p className="signup-error-message"> 비밀번호가 일치하지 않습니다</p>
+        )}
+
         <div id="submit-button-container">
           <button disabled={!isSignupValid}> 확인 </button>
         </div>

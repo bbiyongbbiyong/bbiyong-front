@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const memberInitialState = {
-  id: 0,
+  accountId: '',
   signed: false,
 };
 
@@ -10,7 +10,7 @@ const memberSlice = createSlice({
   initialState: memberInitialState,
   reducers: {
     setMember(state, action) {
-      state.id = action.payload.id;
+      state.accountId = action.payload.accountId;
       state.signed = true;
     },
     clearMember: () => memberInitialState,
