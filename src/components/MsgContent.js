@@ -26,8 +26,8 @@ function MsgContent({ title, checkCount }) {
 
       const apiPath =
         title.path === 'metro'
-          ? `http://3.36.220.252:8080/${title.path}/view`
-          : `http://3.36.220.252:8080/${title.path}/${currentCity.cityID}`;
+          ? `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/view`
+          : `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/${currentCity.cityID}`;
       const response = await axios.get(apiPath);
 
       setMsges(response.data.data);
