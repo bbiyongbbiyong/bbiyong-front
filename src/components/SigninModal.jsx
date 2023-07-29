@@ -77,7 +77,7 @@ const SigninModal = ({ closeSigninModal }) => {
           <form onSubmit={onSubmit}>
             <TextInput label="ID" onChange={handleID} />
 
-            <TextInput label="PW" onChange={handlePW} />
+            <TextInput label="PW" type="password" onChange={handlePW} />
             <div id="join-submit-button-container">
               <a href="/join"> 회원가입 </a>
               <button> 확인 </button>
