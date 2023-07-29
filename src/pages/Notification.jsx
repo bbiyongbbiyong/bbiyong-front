@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import notification from '../assets/notification.svg';
 import ToggleButton from '../components/ToggleButton';
@@ -84,6 +85,8 @@ const Notification = () => {
   const [toggleStatus, setToggleStatus] = useState([true, true, true, true]);
   const notifyOn = toggleStatus.includes(true);
 
+  const navigate = useNavigate();
+
   const handleAllToggleStatus = (checked) => {
     if (checked) {
       setToggleStatus([true, true, true, true]);
@@ -112,7 +115,8 @@ const Notification = () => {
         return object;
       }, {}),
     };
-    console.log(requestData);
+
+    navigate('/');
   };
 
   return (
