@@ -7,12 +7,12 @@ export default function Chart() {
   const [analytics, setAnalytics] = useState([]);
   const chartData = [
     {
-      name: '지난주',
+      name: '어제',
       data: [analytics.emergencyMsgYdy, analytics.metroYdy, analytics.accidentYdy],
       color: '#F43661',
     },
     {
-      name: '이번주',
+      name: '오늘',
       data: [analytics.emergencyMsgTdy, analytics.metroTdy, analytics.accidentTdy],
       color: '#3399FF',
     },
