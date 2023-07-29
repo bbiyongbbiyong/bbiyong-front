@@ -37,12 +37,12 @@ const SigninModal = ({ closeSigninModal }) => {
     };
     try {
       const response = await axios.post('https://api.bbiyong-bbiyong.seoul.kr/login', signinData);
-      setToken(response.data);
+      setToken(response.data.data);
       loginDispatch(signinData);
-      navigate('/notification');
+      navigate('/notify');
     } catch (e) {
-      if (e.response.status === 422) {
-        // 상태코드 수정 예정
+      if (e.response.status === 500) {
+        // 상태코드 수정 예정 (500 -> 409)
         setError(e.response.data.message);
       } else {
         alert('로그인 중 에러가 발생했습니다. 잠시 후 다시 시도해주세요');
