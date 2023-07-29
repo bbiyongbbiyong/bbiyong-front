@@ -11,7 +11,7 @@ import TextInput from '../components/TextInput';
 const Signup = () => {
   const currentMember = useSelector((state) => state.member);
 
-  const [id, setId] = useState();
+  const [accountId, setAccountId] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [error, setError] = useState(null);
@@ -25,7 +25,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleID = (e) => {
-    setId(e.target.value);
+    setAccountId(e.target.value);
     setIsIdValid(!e.target.validity.patternMismatch);
   };
 
@@ -40,9 +40,9 @@ const Signup = () => {
   };
 
   const signup = async () => {
-    console.log(`${id} / ${password}로 회원가입 시도`);
+    console.log(`${accountId} / ${password}로 회원가입 시도`);
     const signupData = {
-      id,
+      accountId,
       password,
     };
     try {
@@ -82,7 +82,7 @@ const Signup = () => {
           pattern="[a-z\d]{6,12}"
           onChange={handleID}
         />
-        {id && !isIdValid && (
+        {accountId && !isIdValid && (
           <p className="signup-error-message">
             규칙에 맞는 아이디를 입력해주세요. (6~12자리 영문, 숫자 사용)
           </p>
