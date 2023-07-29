@@ -38,7 +38,7 @@ export default function CheckBox() {
       {currentCity.cityID < 2 ? (
         <SeoulMain />
       ) : (
-        <>
+        <div id="msg-box-container">
           <div className="check-box">
             <div id="check-box-container">
               <input
@@ -67,7 +67,7 @@ export default function CheckBox() {
             </div>
           </div>
           <MsgBox check={checkItems} title={titles} />
-        </>
+        </div>
       )}
     </div>
   );
