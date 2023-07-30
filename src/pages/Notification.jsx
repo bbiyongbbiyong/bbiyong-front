@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
+import { getMessaging, getToken } from 'firebase/messaging';
 
 import notification from '../assets/notification.svg';
 import ToggleButton from '../components/ToggleButton';
+import { firebaseVapidKey } from '../data/firebaseConfig';
 
 import '../css/Notification.css';
 
 const Notification = () => {
+  const messaging = getMessaging();
   const [notificationStatus, setNotificationStatus] = useState(new Map());
 
   const [toggleStatus, setToggleStatus] = useState([]);
@@ -63,6 +66,20 @@ const Notification = () => {
   }, [toggleStatus]);
 
   useEffect(() => {
+    getToken(messaging, {
+      vapidKey: firebaseVapidKey,
+    })
+      .then((currentToken) => {
+        if (currentToken) {
+          console.log(currentToken);
+          // TODO: 서버에 토큰 전송
+        } else {
+          console.log('FCM 토큰이 없습니다.');
+        }
+      })
+      .catch((error) => {
+        console.log('FCM 토큰 가져오기 오류 : ', error);
+      });
     const getNotificationList = async () => {
       const response = await axios.get(
         'https://api.bbiyong-bbiyong.seoul.kr/notification/0/get/topic',
