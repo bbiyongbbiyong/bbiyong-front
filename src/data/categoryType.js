@@ -52,7 +52,7 @@ const SUB_OPTIONS = {
   line9: '9호선',
   incheonLine1: '인천 1호선',
   incheonLine2: '인천 2호선',
-  westcoastLine1: '서해선',
+  westcoastLine: '서해선',
   geongangLine: '경강선',
   airportLine: '공항철도',
   bundangLine: '수인분당선',
