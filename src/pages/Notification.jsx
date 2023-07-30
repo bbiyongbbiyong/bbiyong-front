@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import notification from '../assets/notification.svg';
 import ToggleButton from '../components/ToggleButton';
@@ -7,82 +9,10 @@ import ToggleButton from '../components/ToggleButton';
 import '../css/Notification.css';
 
 const Notification = () => {
-  const TEST_DATA = {
-    naturalDisaster: {
-      typhoon: true,
-      fineDust: false,
-      dry: false,
-      springTide: false,
-      forestFires: false,
-      drought: false,
-      landslide: false,
-      heavySnow: false,
-      flood: false,
-      tsunami: false,
-      downpour: false,
-      earthquake: false,
-      heatWave: false,
-      coldWave: false,
-      fog: false,
-      yellowDust: false,
-      windWave: false,
-      gale: false,
-      naturalEtc: false,
-    },
-    socialDisaster: {
-      trafficControl: false,
-      medical: false,
-      fireAlert: true,
-      waterAlert: false,
-      collapse: false,
-      epidemic: false,
-      explosion: false,
-      blackout: false,
-      trafficAccident: false,
-      gas: false,
-      envPollution: false,
-      missing: false,
-      energy: false,
-      traffic: false,
-      communication: false,
-      socialEtc: false,
-    },
-    subwayInformation: {
-      line1: false,
-      line2: true,
-      line3: false,
-      line4: false,
-      line5: false,
-      line6: false,
-      line7: false,
-      line8: false,
-      line9: false,
-      incheonLine1: false,
-      incheonLine2: false,
-      westcoastLine1: false,
-      geongangLine: false,
-      airportLine: false,
-      bundangLine: false,
-      dxLine: false,
-      uiLine: false,
-      yonginLine: false,
-      ulrtLine: false,
-      gimpoLine: false,
-      sillimLine: false,
-      geongchunLine: false,
-      gyoungiLine: false,
-      lineEtc: false,
-    },
-    roadControlInformation: {
-      roadAccident: false,
-      roadWorks: false,
-      rallyEvent: false,
-      roadEtc: true,
-    },
-  };
-  const [notificationStatus, setNotificationStatus] = useState(new Map(Object.entries(TEST_DATA)));
+  const [notificationList, setNotificationList] = useState();
+  const [notificationStatus, setNotificationStatus] = useState(new Map());
 
-  const [toggleStatus, setToggleStatus] = useState([true, true, true, true]);
+  const [toggleStatus, setToggleStatus] = useState([]);
   const notifyOn = toggleStatus.includes(true);
 
   const navigate = useNavigate();
@@ -109,15 +39,38 @@ const Notification = () => {
 
   const onClickSave = () => {
     const requestData = {
-      notifyOn,
+      memberId: 0,
       notificationList: [...notificationStatus].reduce((object, [key, value]) => {
         object[key] = value;
         return object;
       }, {}),
     };
 
-    navigate('/');
+    try {
+      axios.post('https://api.bbiyong-bbiyong.seoul.kr/notification/save/topic', requestData);
+      navigate('/');
+    } catch (e) {
+      alert('설정 저장 중 에러가 발생했습니다! 잠시 후 다시 시도해주세요');
+    }
   };
+
+  useEffect(() => {
+    const getNotificationList = async () => {
+      const response = await axios.get(
+        'https://api.bbiyong-bbiyong.seoul.kr/notification/0/get/topic',
+      );
+      setNotificationList(response.data.data.notificationList);
+      setToggleStatus(
+        Object.values(response.data.data.notificationList).reduce((status, middleCategory) => {
+          const hasTrue = Object.values(middleCategory).includes(true);
+          status.push(hasTrue);
+          return status;
+        }, []),
+      );
+    };
+
+    getNotificationList();
+  }, []);
 
   return (
     <div id="notification-page-container">
@@ -139,14 +92,14 @@ const Notification = () => {
       </div>
 
       <div id="notification-content-box">
-        {notifyOn ? (
-          Object.keys(TEST_DATA).map((middleCategory, index) => (
+        {notifyOn && notificationList ? (
+          Object.keys(notificationList).map((middleCategory, index) => (
             <ToggleButton
               key={index}
               label={middleCategory}
               onChange={handleToggleStatus}
               index={index}
-              options={TEST_DATA[middleCategory]}
+              options={notificationList[middleCategory]}
               lifting={updateNotificationStatus}
             />
           ))
