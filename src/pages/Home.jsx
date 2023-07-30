@@ -21,7 +21,11 @@ const Home = () => {
 
   const onClickNotification = () => {
     if (currentMember.signed) {
-      navigate('/notify');
+      if (Notification.permission === 'denied') {
+        alert('알림 권한이 차단되어 알림 설정 기능을 이용할 수 없습니다.');
+      } else {
+        navigate('/notify');
+      }
     } else {
       openSigninModal();
     }

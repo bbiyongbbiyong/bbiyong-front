@@ -28,7 +28,8 @@
 }
 
 #notification-content-box {
-  height: 700px;
+  min-height: 600px;
+  height: fit-content;
 
   display: flex;
   flex-direction: column;

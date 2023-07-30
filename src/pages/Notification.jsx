@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 import notification from '../assets/notification.svg';
 import ToggleButton from '../components/ToggleButton';
@@ -6,65 +9,12 @@ import ToggleButton from '../components/ToggleButton';
 import '../css/Notification.css';
 
 const Notification = () => {
-  const MIDDLE_CATEGORY = ['자연재난', '사회재난', '지하철정보', '도로통제정보'];
-  const SUB_CATEGORY = [
-    [
-      '태풍',
-      '건조',
-      '산불',
-      '산사태',
-      '홍수',
-      '호우',
-      '폭염',
-      '안개',
-      '풍랑',
-      '미세먼지',
-      '대조기',
-      '가뭄',
-      '대설',
-      '지진해일',
-      '지진',
-      '한파',
-      '황사',
-      '강풍',
-      '기타 자연재난',
-    ],
-    [
-      '교통통제',
-      '화재',
-      '붕괴',
-      '폭발',
-      '교통사고',
-      '환경오염사고',
-      '에너지',
-      '통신',
-      '교통',
-      '금융',
-      '의료',
-      '수도',
-      '전염병',
-      '정전',
-      '가스',
-      '실종',
-      '기타 사회재난',
-    ],
-    [
-      '1호선',
-      '2호선',
-      '3호선',
-      '4호선',
-      '5호선',
-      '6호선',
-      '7호선',
-      '8호선',
-      '9호선',
-      '기타 지하철',
-    ],
-    ['도로사고', '집회/행사', '도로공사', '기타 도로통제'],
-  ];
+  const [notificationStatus, setNotificationStatus] = useState(new Map());
 
-  const [toggleStatus, setToggleStatus] = useState([true, true, true, true]);
+  const [toggleStatus, setToggleStatus] = useState([]);
   const notifyOn = toggleStatus.includes(true);
+
+  const navigate = useNavigate();
 
   const handleAllToggleStatus = (checked) => {
     if (checked) {
@@ -74,7 +24,7 @@ const Notification = () => {
     }
   };
 
-  const reverseToggleStatus = (index) => {
+  const handleToggleStatus = (index) => {
     setToggleStatus(
       toggleStatus.map((toggleChecked, toggleIndex) => {
         return index === toggleIndex ? !toggleChecked : toggleChecked;
@@ -82,14 +32,49 @@ const Notification = () => {
     );
   };
 
-  const handleToggleStatus = (index) => {
-    reverseToggleStatus(index);
+  const updateNotificationStatus = (middleCategory, subOptionStatus) => {
+    setNotificationStatus(new Map(notificationStatus.set(middleCategory, subOptionStatus)));
   };
 
   const onClickSave = () => {
-    const requestData = { notifyOn, toggleStatus };
-    console.log(requestData);
+    const requestData = {
+      memberId: 0,
+      notificationList: [...notificationStatus].reduce((object, [key, value]) => {
+        object[key] = value;
+        return object;
+      }, {}),
+    };
+
+    try {
+      axios.post('https://api.bbiyong-bbiyong.seoul.kr/notification/save/topic', requestData);
+      navigate('/');
+    } catch (e) {
+      alert('설정 저장 중 에러가 발생했습니다! 잠시 후 다시 시도해주세요');
+    }
   };
+
+  useEffect(() => {
+    const getNotificationList = async () => {
+      const response = await axios.get(
+        'https://api.bbiyong-bbiyong.seoul.kr/notification/0/get/topic',
+      );
+      setNotificationStatus(
+        Object.keys(response.data.data.notificationList).reduce((map, key) => {
+          map.set(key, response.data.data.notificationList[key]);
+          return map;
+        }, new Map()),
+      );
+      setToggleStatus(
+        Object.values(response.data.data.notificationList).reduce((status, middleCategory) => {
+          const hasTrue = Object.values(middleCategory).includes(true);
+          status.push(hasTrue);
+          return status;
+        }, []),
+      );
+    };
+
+    getNotificationList();
+  }, []);
 
   return (
     <div id="notification-page-container">
@@ -111,14 +96,15 @@ const Notification = () => {
       </div>
 
       <div id="notification-content-box">
-        {notifyOn ? (
-          MIDDLE_CATEGORY.map((category, index) => (
+        {notifyOn && notificationStatus.size ? (
+          Array.from(notificationStatus.keys()).map((middleCategory, index) => (
             <ToggleButton
               key={index}
-              label={category}
+              label={middleCategory}
               onChange={handleToggleStatus}
               index={index}
-              options={SUB_CATEGORY[index]}
+              options={notificationStatus.get(middleCategory)}
+              lifting={updateNotificationStatus}
             />
           ))
         ) : (
