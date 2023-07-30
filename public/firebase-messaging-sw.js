@@ -17,8 +17,8 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = '삐용삐용 테스트';
   const notificationOptions = {
     body: payload.data.body,
-    icon: './serviceLogo.svg',
-    badge: './serviceLogo.svg',
+    icon: './serviceLogo.png',
+    badge: './serviceLogo.png',
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
