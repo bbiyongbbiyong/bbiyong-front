@@ -26,7 +26,7 @@ function MsgContent({ title, checkCount }) {
 
       const apiPath =
         title.path === 'metro'
-          ? `https://api.bbiyong-bbiyong.seoul.kr//${title.path}/view`
+          ? `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/view`
           : `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/${currentCity.cityID}`;
       const response = await axios.get(apiPath);
 
@@ -73,14 +73,6 @@ function MsgContent({ title, checkCount }) {
     }
   };
 
-  const sizeMsgBox = () => {
-    if (checkCount < 2) {
-      return '38vh';
-    }
-
-    return '100px';
-  };
-
   if (Error) return <div>Error{` ${title}`}</div>;
   if (!Msges) return null;
 
@@ -104,7 +96,7 @@ function MsgContent({ title, checkCount }) {
         )}
       </div>
 
-      <div className={`msg-box start ${fade}`} style={{ height: sizeMsgBox() }}>
+      <div className={`msg-box start ${fade}`}>
         {display === 'dis-msg-none' ? (
           <div className={`dis-msg ${display}`}>최근 수신된 정보가 없습니다</div>
         ) : (
