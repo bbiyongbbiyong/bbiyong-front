@@ -9,7 +9,6 @@ import ToggleButton from '../components/ToggleButton';
 import '../css/Notification.css';
 
 const Notification = () => {
-  const [notificationList, setNotificationList] = useState();
   const [notificationStatus, setNotificationStatus] = useState(new Map());
 
   const [toggleStatus, setToggleStatus] = useState([]);
@@ -59,7 +58,12 @@ const Notification = () => {
       const response = await axios.get(
         'https://api.bbiyong-bbiyong.seoul.kr/notification/0/get/topic',
       );
-      setNotificationList(response.data.data.notificationList);
+      setNotificationStatus(
+        Object.keys(response.data.data.notificationList).reduce((map, key) => {
+          map.set(key, response.data.data.notificationList[key]);
+          return map;
+        }, new Map()),
+      );
       setToggleStatus(
         Object.values(response.data.data.notificationList).reduce((status, middleCategory) => {
           const hasTrue = Object.values(middleCategory).includes(true);
@@ -92,14 +96,14 @@ const Notification = () => {
       </div>
 
       <div id="notification-content-box">
-        {notifyOn && notificationList ? (
-          Object.keys(notificationList).map((middleCategory, index) => (
+        {notifyOn && notificationStatus.size ? (
+          Array.from(notificationStatus.keys()).map((middleCategory, index) => (
             <ToggleButton
               key={index}
               label={middleCategory}
               onChange={handleToggleStatus}
               index={index}
-              options={notificationList[middleCategory]}
+              options={notificationStatus.get(middleCategory)}
               lifting={updateNotificationStatus}
             />
           ))
