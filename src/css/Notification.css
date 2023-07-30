@@ -28,6 +28,7 @@
 }
 
 #notification-content-box {
+  min-height: 600px;
   height: fit-content;
 
   display: flex;
