@@ -15,7 +15,7 @@ const Notification = () => {
   const [notificationStatus, setNotificationStatus] = useState(new Map());
 
   const [toggleStatus, setToggleStatus] = useState([]);
-  const notifyOn = toggleStatus.includes(true);
+  const [notifyOn, setNotifyOn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,6 +42,7 @@ const Notification = () => {
   const onClickSave = () => {
     const requestData = {
       memberId: 0,
+      notifyOn,
       notificationList: [...notificationStatus].reduce((object, [key, value]) => {
         object[key] = value;
         return object;
@@ -55,6 +56,14 @@ const Notification = () => {
       alert('설정 저장 중 에러가 발생했습니다! 잠시 후 다시 시도해주세요');
     }
   };
+
+  useEffect(() => {
+    if (toggleStatus.filter((status) => status).length > 0) {
+      setNotifyOn(true);
+    } else {
+      setNotifyOn(false);
+    }
+  }, [toggleStatus]);
 
   useEffect(() => {
     getToken(messaging, {
@@ -75,19 +84,23 @@ const Notification = () => {
       const response = await axios.get(
         'https://api.bbiyong-bbiyong.seoul.kr/notification/0/get/topic',
       );
+
       setNotificationStatus(
         Object.keys(response.data.data.notificationList).reduce((map, key) => {
           map.set(key, response.data.data.notificationList[key]);
           return map;
         }, new Map()),
       );
-      setToggleStatus(
-        Object.values(response.data.data.notificationList).reduce((status, middleCategory) => {
-          const hasTrue = Object.values(middleCategory).includes(true);
-          status.push(hasTrue);
-          return status;
-        }, []),
-      );
+
+      if (response.data.data.notifyOn) {
+        setToggleStatus(
+          Object.values(response.data.data.notificationList).reduce((status, middleCategory) => {
+            const hasTrue = Object.values(middleCategory).includes(true);
+            status.push(hasTrue);
+            return status;
+          }, []),
+        );
+      }
     };
 
     getNotificationList();
