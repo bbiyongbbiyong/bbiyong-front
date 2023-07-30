@@ -15,17 +15,16 @@ h3 {
   color: #5a6478;
 }
 
-/* input {
-        accent-color: white;
-} */
-
 .main-container {
-  margin-left: auto;
-  margin-right: auto;
   background: rgb(255, 235, 214);
-  width: 350px;
+  width: 325px;
   border-radius: 10px;
-  padding-bottom: 15px;
+  padding: 10px 10px 10px 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .messages {
@@ -38,8 +37,7 @@ h3 {
 }
 
 .msg-box {
-  margin-left: auto;
-  margin-right: auto;
+  height: 120px;
   margin-bottom: 10px;
   background: white;
   border-radius: 10px;
@@ -63,14 +61,18 @@ h3 {
 .msg-container {
   margin-left: 10px;
   margin-right: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .check-none {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-grow: 1;
   font-weight: bold;
   color: #6f7072;
-  position: relative;
-  top: 40%;
 }
 
 .dis-msg {
@@ -97,6 +99,10 @@ h3 {
   color: #abadb2;
 }
 
+#msg-box-container {
+  width: 325px;
+}
+
 .check-box {
   display: inline-block;
   font-size: 10px;
@@ -107,7 +113,6 @@ h3 {
 
 #check-box-container {
   float: right;
-  padding: 5px 10px 0 0;
 }
 
 .checkbox-name {
@@ -120,12 +125,12 @@ input {
 }
 
 .seoul-main {
-  padding: 30px;
-  padding-top: 20px;
-  padding-bottom: 0px;
+  padding: 0px 0px 0px 0px;
   font-size: 18px;
   font-weight: bold;
   line-height: 35px;
+
+  width: fit-content;
 }
 
 .seoul-main-city {

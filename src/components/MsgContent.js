@@ -5,10 +5,7 @@ import axios from 'axios';
 import '../css/message.css';
 
 function MsgContent({ title, checkCount }) {
-  const currentState = useSelector((state) => {
-    return state;
-  });
-  const { clickCity } = currentState;
+  const currentCity = useSelector((state) => state.city);
 
   const [Msges, setMsges] = useState(null);
   const [, setLoading] = useState(false);
@@ -29,8 +26,8 @@ function MsgContent({ title, checkCount }) {
 
       const apiPath =
         title.path === 'metro'
-          ? `https://api.bbiyong-bbiyong.seoul.kr//${title.path}/view`
-          : `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/${clickCity.cityID}`;
+          ? `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/view`
+          : `https://api.bbiyong-bbiyong.seoul.kr/${title.path}/${currentCity.cityID}`;
       const response = await axios.get(apiPath);
 
       setMsges(response.data.data);
@@ -49,7 +46,7 @@ function MsgContent({ title, checkCount }) {
     return () => {
       setFade('');
     };
-  }, [clickCity, checkCount]);
+  }, [currentCity, checkCount]);
 
   const fillMsg = (target) => {
     if (title.path === 'emerMsg') return 'rgb(255, 155, 155)';
@@ -76,14 +73,6 @@ function MsgContent({ title, checkCount }) {
     }
   };
 
-  const sizeMsgBox = () => {
-    if (checkCount < 2) {
-      return '38vh';
-    }
-
-    return '100px';
-  };
-
   if (Error) return <div>Error{` ${title}`}</div>;
   if (!Msges) return null;
 
@@ -107,7 +96,7 @@ function MsgContent({ title, checkCount }) {
         )}
       </div>
 
-      <div className={`msg-box start ${fade}`} style={{ height: sizeMsgBox() }}>
+      <div className={`msg-box start ${fade}`}>
         {display === 'dis-msg-none' ? (
           <div className={`dis-msg ${display}`}>최근 수신된 정보가 없습니다</div>
         ) : (

@@ -14,6 +14,9 @@ module.exports = {
     'prettier/prettier': ['error'],
     'import/prefer-default-export': 'off',
     'import/extensions': ['off'],
+    'import/no-unresolved': 'off',
+    'prefer-destructuring': 'off',
+    'no-param-reassign': 'off',
     'react/prop-types': 'off',
     'import/order': [
       'error',

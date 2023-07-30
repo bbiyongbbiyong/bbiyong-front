@@ -1,0 +1,38 @@
+#home-container {
+  height: 100%;
+  position: relative;
+}
+
+#title-container {
+  display: flex;
+  justify-content: center;
+}
+
+#service-title {
+  text-align: center;
+  margin: 20 0;
+}
+
+#service-title span {
+  color: #9e4242;
+}
+
+#logo {
+  width: 30px;
+  margin-right: 2px;
+}
+
+#notification-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  top: 50px;
+  right: 25px;
+}
+
+#notification-container p {
+  color: #6f6f6f;
+  font-size: 4px;
+}
