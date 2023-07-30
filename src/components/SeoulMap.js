@@ -103,6 +103,8 @@ function SeoulMap() {
                 id={city.properties.SIG_KOR_NM}
                 d={city.properties.coord}
                 onClick={(e) => selectCity(e, ind)}
+                onTouchStart={(e) => selectCity(e, ind)}
+                onTouchEnd={(e) => e.preventDefault()}
                 fill={fillCity(city)}
               />
               <text transform={nameCity(ind)} textAnchor="middle" className="name">
