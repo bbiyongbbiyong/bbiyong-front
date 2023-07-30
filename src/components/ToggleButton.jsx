@@ -47,7 +47,7 @@ const ToggleButton = ({ label, onChange, index, options, lifting }) => {
   useEffect(() => {
     return () => {
       const subOptionStatus = SUB_OPTIONS.reduce((status, optionName) => {
-        status[optionName] = false;
+        status[optionName] = checkedOption.includes(optionName);
         return status;
       }, {});
       lifting(label, subOptionStatus);
