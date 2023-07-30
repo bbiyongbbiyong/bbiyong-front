@@ -26,8 +26,7 @@ messaging.onBackgroundMessage((payload) => {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  // TODO: 배포 후 url 기입
-  const targetUrl = '';
+  const targetUrl = 'https://bbiyong-bbiyong.web.app/';
   event.waitUntil(
     self.clients.matchAll().then((clients) => {
       let existingTab = null;
