@@ -7,7 +7,7 @@ import { getMessaging, getToken } from 'firebase/messaging';
 import notification from '../assets/notification.svg';
 import ToggleButton from '../components/ToggleButton';
 import { firebaseVapidKey } from '../data/firebaseConfig';
-
+import { getToken as getAccessToken } from '../utils/tokenUtil';
 import '../css/Notification.css';
 
 const Notification = () => {
@@ -16,6 +16,8 @@ const Notification = () => {
 
   const [toggleStatus, setToggleStatus] = useState([]);
   const [notifyOn, setNotifyOn] = useState(false);
+
+  const accessToken = getAccessToken();
 
   const navigate = useNavigate();
 
@@ -41,7 +43,6 @@ const Notification = () => {
 
   const onClickSave = () => {
     const requestData = {
-      memberId: 0,
       notifyOn,
       notificationList: [...notificationStatus].reduce((object, [key, value]) => {
         object[key] = value;
@@ -50,7 +51,11 @@ const Notification = () => {
     };
 
     try {
-      axios.post('https://api.bbiyong-bbiyong.seoul.kr/notification/save/topic', requestData);
+      axios.post('https://api.bbiyong-bbiyong.seoul.kr/topic', requestData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       navigate('/');
     } catch (e) {
       alert('설정 저장 중 에러가 발생했습니다! 잠시 후 다시 시도해주세요');
@@ -80,10 +85,13 @@ const Notification = () => {
       .catch((error) => {
         console.log('FCM 토큰 가져오기 오류 : ', error);
       });
+
     const getNotificationList = async () => {
-      const response = await axios.get(
-        'https://api.bbiyong-bbiyong.seoul.kr/notification/0/get/topic',
-      );
+      const response = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/topic', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
       setNotificationStatus(
         Object.keys(response.data.data.notificationList).reduce((map, key) => {
