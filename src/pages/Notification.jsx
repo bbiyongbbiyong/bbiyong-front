@@ -71,20 +71,26 @@ const Notification = () => {
   }, [toggleStatus]);
 
   useEffect(() => {
-    getToken(messaging, {
-      vapidKey: firebaseVapidKey,
-    })
-      .then((currentToken) => {
-        if (currentToken) {
-          console.log(currentToken);
-          // TODO: 서버에 토큰 전송
+    const getFCMToken = async () => {
+      try {
+        const token = await getToken(messaging, { vapidKey: firebaseVapidKey });
+        if (token) {
+          await axios.post(
+            'https://api.bbiyong-bbiyong.seoul.kr/notification/fcmtoken',
+            { token },
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            },
+          );
         } else {
           console.log('FCM 토큰이 없습니다.');
         }
-      })
-      .catch((error) => {
-        console.log('FCM 토큰 가져오기 오류 : ', error);
-      });
+      } catch (error) {
+        alert('FCM 토큰 관련 에러가 발생했습니다. 잠시 후 다시 시도해주세요');
+      }
+    };
 
     const getNotificationList = async () => {
       const response = await axios.get('https://api.bbiyong-bbiyong.seoul.kr/topic', {
@@ -111,6 +117,7 @@ const Notification = () => {
       }
     };
 
+    getFCMToken();
     getNotificationList();
   }, []);
 
